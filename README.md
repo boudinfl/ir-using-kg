@@ -1,4 +1,16 @@
 # IR Evaluation of Keyphrase Generation 
+
+## Data
+
+* [Data](#data)
+* [Installing anserini](#installing-anserini)
+* [Indexing](#indexing)
+  * [Converting documents to TREC format](#converting-documents-to-trec-format)
+  * [Creating indexes](#creating-indexes)
+* [Retrieval](#retrieval)
+  * [Converting topics to TREC format](#converting-topics-to-trec-format)
+  * [Retrieving documents](#retrieving-documents)
+* [Evaluation](#evaluation)
  
 ## Data
 
@@ -39,6 +51,8 @@ mvn clean package appassembler:assemble -q -Dmaven.javadoc.skip=true
 
 ## Indexing
 
+### Converting documents to TREC format
+
 First, we convert NTCIR SGML formatted documents to TREC format for easier indexing.
 
 From
@@ -72,53 +86,73 @@ to
 by doing:
 
 ```bash
-# create data files WITHOUT keyword information 
-exp_name="ntcir1+2"
-mkdir data/docs/${exp_name}
-python3 src/ntcir_to_trec.py --input data/docs/ntc1-e1.mod \
-                             --output data/docs/${exp_name}/ntc1-e1.trec
-python3 src/ntcir_to_trec.py --input data/docs/ntc2-e1g \
-                             --output data/docs/${exp_name}/ntc2-e1g.trec
-python3 src/ntcir_to_trec.py --input data/docs/ntc2-e1k \
-                             --output data/docs/${exp_name}/ntc2-e1k.trec
+# create standard TREC data files
+EXP="ntcir-2"
+for FILE in data/docs/*.gz
+do
+    python3 src/ntcir_to_trec.py --input ${FILE} \
+                                 --output data/docs/${EXP}/${FILE##*/}
+done
 
-# create data files WITH keyword information
-exp_name="ntcir1+2.keywords"
-mkdir data/docs/${exp_name}/
-python3 src/ntcir_to_trec.py --input data/docs/ntc1-e1.mod \
-                             --keep_keywords \
-                             --output data/docs/${exp_name}/ntc1-e1.trec
-python3 src/ntcir_to_trec.py --input data/docs/ntc2-e1g \
-                             --keep_keywords \
-                             --output data/docs/${exp_name}/ntc2-e1g.trec
-python3 src/ntcir_to_trec.py --input data/docs/ntc2-e1k \
-                             --keep_keywords \
-                             --output data/docs/${exp_name}/ntc2-e1k.trec
+# create TREC data files with (author) keywords information
+EXP="ntcir-2+keywords"
+for FILE in data/docs/*.gz
+do
+    python3 src/ntcir_to_trec.py --input ${FILE} \
+                                 --output data/docs/${EXP}/${FILE##*/} \
+                                 --include_keywords
+done
+
+# create TREC data files with (automatically) generated keyphrases information
+for TOP in 5 10 15 20
+do
+    EXP="ntcir-2+top${TOP}-keyphrases"
+    for FILE in data/docs/*.gz
+    do
+        python3 src/ntcir_to_trec.py --input ${FILE} \
+                                     --output data/docs/${EXP}/${FILE##*/} \
+                                     --path_to_keyphrases data/keyphrases/${FILE##*/}.copyrnn.json.gz \
+                                     --nb_keyphrases ${TOP}
+    done
+done
+
+# create TREC data files with (automatically) generated keyphrases and keyword information
+for TOP in 5 10
+do
+    EXP="ntcir-2+keywords+top${TOP}-keyphrases"
+    for FILE in data/docs/*.gz
+    do
+        python3 src/ntcir_to_trec.py --input ${FILE} \
+                                     --output data/docs/${EXP}/${FILE##*/} \
+                                     --path_to_keyphrases data/keyphrases/${FILE##*/}.copyrnn.json.gz \
+                                     --nb_keyphrases ${TOP} \
+                                     --include_keywords
+    done
+done
 ```
+
+### Creating indexes
 
 We are now ready for indexing!
 
 ```bash
-# create index WITHOUT keyword information
-exp_name="ntcir1+2"
-sh anserini/target/appassembler/bin/IndexCollection -collection TrecCollection \
-    -generator JsoupGenerator \
-    -threads 2 \
-    -input data/docs/${exp_name}/ \
-    -index data/indexes/lucene-index.${exp_name}.pos+docvectors+rawdocs \
-    -storePositions -storeDocvectors -storeRawDocs
-
-# create index WITH keyword information
-exp_name="ntcir1+2.keywords"
-sh anserini/target/appassembler/bin/IndexCollection -collection TrecCollection \
-    -generator JsoupGenerator \
-    -threads 2 \
-    -input data/docs/${exp_name}/ \
-    -index data/indexes/lucene-index.${exp_name}.pos+docvectors+rawdocs \
-    -storePositions -storeDocvectors -storeRawDocs
+# create indexes
+# for EXP in "ntcir-2" "ntcir-2+keywords" "ntcir-2+top5-keyphrases" "ntcir-2+top10-keyphrases" "ntcir-2+top15-keyphrases" "ntcir-2+top20-keyphrases" "ntcir-2+keywords+top5-keyphrases" "ntcir-2+keywords+top10-keyphrases" 
+for EXP in "ntcir-2+keywords+top10-keyphrases" 
+do
+    sh anserini/target/appassembler/bin/IndexCollection \
+        -collection TrecCollection \
+        -generator JsoupGenerator \
+        -threads 2 \
+        -input data/docs/${EXP}/ \
+        -index data/indexes/lucene-index.${EXP}.pos+docvectors+rawdocs \
+        -storePositions -storeDocvectors -storeRawDocs
+done
 ```
 
 ## Retrieval
+
+### Converting topics to TREC format
 
 Again, we have to convert NTCIR topics to TREC format for easier retrieval.
 
@@ -169,112 +203,90 @@ by doing:
 
 ```bash
 # create topic file with title / description / narrative
-python3 src/topics_to_trec.py --input data/topics/topic-e0101-0149 \
-     --output data/topics/topic-e0101-0149.title+desc+narr.trec --keep_narrative
+python3 src/topics_to_trec.py \
+        --input data/topics/topic-e0101-0149 \
+        --output data/topics/topic-e0101-0149.title+desc+narr.trec \
+        --keep_narrative
 ```
+
+### Retrieving documents
 
 We are now ready to retrieve !
 
 ```bash
-# retrieve topics on the index WITHOUT keywords
-exp_name="ntcir1+2"
-
-sh anserini/target/appassembler/bin/SearchCollection -topicreader Trec \
-   -index data/indexes/lucene-index.${exp_name}.pos+docvectors+rawdocs \
-   -topics data/topics/topic-e0101-0149.title+desc+narr.trec \
-   -output output/run.${exp_name}.bm25.txt -bm25
-
-sh anserini/target/appassembler/bin/SearchCollection -topicreader Trec \
-   -index data/indexes/lucene-index.${exp_name}.pos+docvectors+rawdocs \
-   -topics data/topics/topic-e0101-0149.title+desc+narr.trec \
-   -output output/run.${exp_name}.bm25+rm3.txt -bm25 -rm3
-
-sh anserini/target/appassembler/bin/SearchCollection -topicreader Trec \
-   -index data/indexes/lucene-index.${exp_name}.pos+docvectors+rawdocs \
-   -topics data/topics/topic-e0101-0149.title+desc+narr.trec \
-   -output output/run.${exp_name}.ql.txt -ql 
-
-sh anserini/target/appassembler/bin/SearchCollection -topicreader Trec \
-   -index data/indexes/lucene-index.${exp_name}.pos+docvectors+rawdocs \
-   -topics data/topics/topic-e0101-0149.title+desc+narr.trec \
-   -output output/run.${exp_name}.ql+rm3.txt -ql -rm3
-
-# retrieve topics on the index WITH keywords
-exp_name="ntcir1+2.keywords"
-
-sh anserini/target/appassembler/bin/SearchCollection -topicreader Trec \
-   -index data/indexes/lucene-index.${exp_name}.pos+docvectors+rawdocs \
-   -topics data/topics/topic-e0101-0149.title+desc+narr.trec \
-   -output output/run.${exp_name}.bm25.txt -bm25
-
-sh anserini/target/appassembler/bin/SearchCollection -topicreader Trec \
-   -index data/indexes/lucene-index.${exp_name}.pos+docvectors+rawdocs \
-   -topics data/topics/topic-e0101-0149.title+desc+narr.trec \
-   -output output/run.${exp_name}.bm25+rm3.txt -bm25 -rm3
-
-sh anserini/target/appassembler/bin/SearchCollection -topicreader Trec \
-   -index data/indexes/lucene-index.${exp_name}.pos+docvectors+rawdocs \
-   -topics data/topics/topic-e0101-0149.title+desc+narr.trec \
-   -output output/run.${exp_name}.ql.txt -ql 
-
-sh anserini/target/appassembler/bin/SearchCollection -topicreader Trec \
-   -index data/indexes/lucene-index.${exp_name}.pos+docvectors+rawdocs \
-   -topics data/topics/topic-e0101-0149.title+desc+narr.trec \
-   -output output/run.${exp_name}.ql+rm3.txt -ql -rm3
+# for EXP in "ntcir-2" "ntcir-2+keywords" "ntcir-2+top5-keyphrases" "ntcir-2+top10-keyphrases" "ntcir-2+top15-keyphrases" "ntcir-2+top20-keyphrases" "ntcir-2+keywords+top5-keyphrases" "ntcir-2+keywords+top10-keyphrases" 
+for EXP in "ntcir-2+keywords+top10-keyphrases"
+do
+    for MODEL in "bm25" "ql"
+    do
+        # compute model
+        sh anserini/target/appassembler/bin/SearchCollection \
+           -topicreader Trec \
+           -index data/indexes/lucene-index.${EXP}.pos+docvectors+rawdocs \
+           -topics data/topics/topic-e0101-0149.title+desc+narr.trec \
+           -output output/run.${EXP}.${MODEL}.txt -${MODEL}
+        
+        # compute model with pseudo-relevance feedback RM3
+        sh anserini/target/appassembler/bin/SearchCollection \
+           -topicreader Trec \
+           -index data/indexes/lucene-index.${EXP}.pos+docvectors+rawdocs \
+           -topics data/topics/topic-e0101-0149.title+desc+narr.trec \
+           -output output/run.${EXP}.${MODEL}+rm3.txt -${MODEL} -rm3
+    done
+done
 ```
 
 ## Evaluation
 
 ```bash
-
-# Eval WITHOUT keywords
-exp_name="ntcir1+2"
-
-# Eval BM25 / BM25+RM3 WITHOUT keywords
-anserini/eval/trec_eval.9.0.4/trec_eval -m map -m P.30 \
-    data/rels/rel1_ntc2-e2_0101-0149 output/run.${exp_name}.bm25.txt
-    
-anserini/eval/trec_eval.9.0.4/trec_eval -m map -m P.30 \
-    data/rels/rel1_ntc2-e2_0101-0149 output/run.${exp_name}.bm25+rm3.txt
-    
-# Eval QL / QL+RM3 WITHOUT keywords 
-anserini/eval/trec_eval.9.0.4/trec_eval -m map -m P.30 \
-    data/rels/rel1_ntc2-e2_0101-0149 output/run.${exp_name}.ql.txt
-    
-anserini/eval/trec_eval.9.0.4/trec_eval -m map -m P.30 \
-    data/rels/rel1_ntc2-e2_0101-0149 output/run.${exp_name}.ql+rm3.txt
- 
-# Eval WITH keywords
-exp_name="ntcir1+2.keywords"
-
-# Eval BM25 / BM25+RM3 WITH keywords 
-anserini/eval/trec_eval.9.0.4/trec_eval -m map -m P.30 \
-    data/rels/rel1_ntc2-e2_0101-0149 output/run.${exp_name}.bm25.txt
-
-anserini/eval/trec_eval.9.0.4/trec_eval -m map -m P.30 \
-    data/rels/rel1_ntc2-e2_0101-0149 output/run.${exp_name}.bm25+rm3.txt
-
-# Eval QL / QL+RM3 WITH keywords 
-anserini/eval/trec_eval.9.0.4/trec_eval -m map -m P.30 \
-    data/rels/rel1_ntc2-e2_0101-0149 output/run.${exp_name}.ql.txt
-    
-anserini/eval/trec_eval.9.0.4/trec_eval -m map -m P.30 \
-    data/rels/rel1_ntc2-e2_0101-0149 output/run.${exp_name}.ql+rm3.txt
+# for EXP in "ntcir-2" "ntcir-2+keywords" "ntcir-2+top5-keyphrases" "ntcir-2+top10-keyphrases" "ntcir-2+top15-keyphrases" "ntcir-2+top20-keyphrases" "ntcir-2+keywords+top5-keyphrases" "ntcir-2+keywords+top10-keyphrases"
+for EXP in "ntcir-2+keywords+top10-keyphrases"  
+do
+    echo "Experiment: ${EXP}"
+    for MODEL in "bm25" "ql"
+    do
+        echo "Eval: ${MODEL}"
+        anserini/eval/trec_eval.9.0.4/trec_eval -m map -m P.30 \
+            data/rels/rel1_ntc2-e2_0101-0149 \
+            output/run.${EXP}.${MODEL}.txt
+        
+        echo "Eval: ${MODEL} + RM3"
+        anserini/eval/trec_eval.9.0.4/trec_eval -m map -m P.30 \
+            data/rels/rel1_ntc2-e2_0101-0149 \
+            output/run.${EXP}.${MODEL}+rm3.txt
+    done
+done
 ```
 
 ## Results
 
 
-| MAP       | BM25   | +RM3   | QL     | +RM3   |
-:-----------|--------|--------|--------|--------|
-| NTCIR-1+2 | 0.2212 | 0.2374 | 0.2164 | 0.2067 |
-| +keywords | 0.2379 | 0.2592 | 0.2376 | 0.2373 |
+| MAP               | BM25   | +RM3   | QL     | +RM3   |
+:-------------------|--------|--------|--------|--------|
+| NTCIR-2           | 0.2212 | 0.2374 | 0.2164 | 0.2067 |
+| +keywords         | 0.2379 | 0.2592 | 0.2376 | 0.2373 |
+|                   |        |        |        |        |
+| +top5-keyphrases  | 0.2244 | 0.2452 | 0.2211 | 0.2277 |
+| +top10-keyphrases | 0.2247 | 0.2385 | 0.2228 | 0.2282 |
+| +top15-keyphrases | 0.2246 | 0.2412 | 0.2198 | 0.2388 |
+| +top20-keyphrases | 0.2292 | 0.2431 | 0.2265 | 0.2357 |
+|                   |        |        |        |        |
+| +keywords+top5-keyphrases  | 0.2382 | 0.2665 | 0.2426 | 0.2416 |
+| +keywords+top10-keyphrases | 0.2359 | 0.2650 | 0.2390 | 0.2452 |
 
+| P30               | BM25   | +RM3   | QL     | +RM3   |
+:-------------------|--------|--------|--------|--------|
+| NTCIR-2           | 0.1531 | 0.1714 | 0.1544 | 0.1626 |
+| +keywords         | 0.1571 | 0.1769 | 0.1605 | 0.1707 |
+|                   |        |        |        |        |
+| +top5-keyphrases  | 0.1544 | 0.1680 | 0.1578 | 0.1687 |
+| +top10-keyphrases | 0.1558 | 0.1680 | 0.1592 | 0.1701 |
+| +top15-keyphrases | 0.1558 | 0.1680 | 0.1578 | 0.1687 |
+| +top20-keyphrases | 0.1558 | 0.1667 | 0.1578 | 0.1646 |
+|                   |        |        |        |        |
+| +keywords+top5-keyphrases  | 0.1612 | 0.1782 | 0.1619 | 0.1728 |
+| +keywords+top10-keyphrases | 0.1619 | 0.1782 | 0.1653 | 0.1789 |
 
-| P30       | BM25   | +RM3   | QL     | +RM3   |
-:-----------|--------|--------|--------|--------|
-| NTCIR-1+2 | 0.1531 | 0.1714 | 0.1544 | 0.1626 |
-| +keywords | 0.1571 | 0.1769 | 0.1605 | 0.1707 |
 
 ## Automatic keyphrase generation
 

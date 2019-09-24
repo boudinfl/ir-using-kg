@@ -1,0 +1,7 @@
+.idea/
+data/indexes/
+anserini/
+data/docs/ntcir-2*
+output/
+.DS_Store
+data/.DS_Store

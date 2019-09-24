@@ -1,0 +1,588 @@
+<top>
+<num> Number: 101
+<title>Hepatitis B
+
+<desc> Description:
+Development of hepatitis B vaccines by genetic engineering techniques
+
+<narr> Narrative:
+The establishment of safe and effective methods of preventing viral diseases, such as hepatitis, is an important task for medicine as it approaches the 21st century. Therefore, a relevant document must discuss the development of hepatitis B vaccines by genetic engineering techniques. It should also deal with the physical properties of hepatitis B vaccines that have been developed and immunologic adjuvants that are effective in increasing immunity to the vaccines. However, documents that do not mention genetic engineering techniques or those dealing with vaccines other than for hepatitis B are not considered relevant.
+
+</top>
+
+<top>
+<num> Number: 102
+<title>Pancreatic islet xenografts
+
+<desc> Description:
+Cases of long-term survival of pancreatic islet xenografts to treat diabetes mellitus
+
+<narr> Narrative:
+Pancreatic islet transplantation has attracted attention as a method that allows radical cure of diabetes mellitus instead of conventional treatment by insulin injection therapy or antidiabetic agents. There is a desire to implement xenotransplantation in view of the problem of donor shortage for transplantation therapy, but overcoming rejection reactions is a major hurdle. Therefore, a relevant document will discuss cases of graft survival for 50 days or more without combined use of immunosuppressive agents for allogeneic or xenogeneic pancreatic islet grafts to treat diabetes mellitus. Provided that a document contains specific information on long-term graft survival and long-term normoglycemia, even if the duration of viability is not stated, it is relevant. However, documents on insulin injection-type artificial islets or only syngeneic grafts are not relevant.
+
+</top>
+
+<top>
+<num> Number: 103
+<title>Hypertension
+
+<desc> Description:
+Correlations between the onset of hypertension and diet, such as salt intake, based on epidemiological surveys in countries other than Japan
+
+<narr> Narrative:
+Today, as we face the rapid approach of an aging society, an important task is the implementation of primary prevention against cardiovascular diseases, including stroke and myocardial infarction, that does not depend on medication. Therefore, a relevant document will discuss correlations between the onset of hypertension and diet, such as salt intake, based on surveys by epidemiological methods in countries other than Japan. Reports dealing with correlations between diet and hypertension are relevant, even if salt intake is not mentioned. Even surveys of ethnic Japanese in other countries are relevant. However, documents that deal with surveys limited to Japan, correlations with lifestyle habits (such as smoking or exercise), animal experiments, or simple descriptions of a diet high in salt as a factor in hypertension are not relevant.
+
+</top>
+
+<top>
+<num> Number: 104
+<title>Small-cell carcinoma of the lung
+
+<desc> Description:
+Diagnosis and treatment of small-cell carcinoma of the lung with monoclonal
+
+<narr> Narrative:
+Small-cell carcinoma of the lung is said to be strongly associated with exogenous factors (such as smoking), and is the cancer with the highest degree of malignancy. Small-cell carcinoma of the lung develops in the vicinity of the pulmonary hilum and tends to metastasize in the early stages. Approximately 10% of lung cancers are of this type. A relevant document must contain diagnostic or treatment methods using monoclonal antibodies that are specific for small-cell carcinoma of the lung. However, those that relate to histological types other than small-cell carcinoma or refer to sites other than the lung, or those that do not clearly mention monoclonal antibodies are not relevant.
+
+</top>
+
+<top>
+<num> Number: 105
+<title>Novel quinolones
+
+<desc> Description:
+The pharmacokinetics and drug interactions of novel quinolones in rabbits and rats
+
+<narr> Narrative:
+Novel quinolones, such as norfloxacin, in which a fluoro radical (fluorine) has been introduced into the basic skeleton of quinolones (fluoroquinolones) have a clearly wider spectrum and more potent antibacterial activity than the older type quinolones and are currently indispensable to the treatment of various infections. A relevant document will deal with the pharmacokinetics (absorption, distribution, metabolism, excretion, tissue penetration, tissue permeability, etc.) and drug interactions of novel quinolone drugs in rabbits or rats. However, a document dealing with animals other than rabbits or rats is not relevant.
+
+</top>
+
+<top>
+<num> Number: 106
+<title>Beta3-adrenergic receptor gene alteration
+
+<desc> Description:
+Correlations between beta3-adrenergic receptor gene alterations and obesity
+
+<narr> Narrative:
+It is well known that diabetes mellitus and so-called "lifestyle diseases," such as hypertension and hyperlipidemia, are induced by obesity. A relevant document must discuss whether there is a correlation between the beta3-adrenergic receptor gene, which is attracting attention as an obesity-associated gene, and obesity. It should also refer to the percentage of gene alterations in certain populations as well as beta3-adrenergic agents as drugs for the treatment of obesity. However, reports that only mention beta-adrenergic receptors are not relevant.
+
+</top>
+
+<top>
+<num> Number: 107
+<title>Embolization
+
+<desc> Description:
+Arterial and portal vein embolization therapy for liver cancer
+
+<narr> Narrative:
+Embolization therapy, which selectively causes shrinkage and necrosis of cancer cells alone without damaging normal cells, has attracted a great deal of interest in recent years as a means of treating liver cancer, for which surgical treatment is seldom indicated. Therefore, a relevant document must deal with arterial or portal vein embolization therapy of liver cancer that uses the oil-based contrast medium lipiodol, which tends to accumulate in tumors, as the embolization material. Those dealing with animal experiments are also relevant. However, studies in which lipiodol is not used or the target lesions are not liver cancer are not relevant.
+
+</top>
+
+<top>
+<num> Number: 108
+<title>XML
+
+<desc> Description:
+Papers about natural language processing using XML
+
+<narr> Narrative:
+Recently XML (eXtensible Markup Language), a method of tagging words based on their grammatical meaning, has drawn attention, as electronic text is often used in business. XML is widely applied in searching, information extraction and knowledge management, since XML makes it easy for computers to read and manage text. Practical applications using XML such as text data management and word searches satisfy the request. Since there are various methods of tagging words that depend on applications, a paper about a new tag set for an application satisfies the request.
+
+</top>
+
+<top>
+<num> Number: 109
+<title>High-speed transfer in TCP
+
+<desc> Description:
+Papers about the improvement of TCP for high-speed transfer
+
+<narr> Narrative:
+TCP (Transmission Control Protocol) is the most popular transport protocol in networks. TCP first establishes a connection between hosts and gives reliable data transmission by the interaction of packets and their acknowledgements. However, TCP cannot use the whole bandwidth of a wide area or high-speed network, because the congestion avoidance algorithm used for TCP is unsuitable for this kind of network. Methods of improving TCP to speed up the transmission rate satisfy the request. Methods that depend on an access link such as satellite communication also satisfy the request if they speed up the transmission rate of TCP. Research referring only to the limitation of transmission rate in TCP does not satisfy the request.
+
+</top>
+
+<top>
+<num> Number: 110
+<title>Visualization of information retrieval
+
+<desc> Description:
+Are there documents about systems supporting information retrieval with information visualization?
+
+<narr> Narrative:
+As information available through the Internet increases, the burden of retrieving information becomes greater. There are limitations to the customary method, which simply displays document titles agreeing with the retrieval query. I want to survey papers about systems that reduce the burden on users by using information visualization to realize efficient information retrieval. Even if a paper does not discuss a retrieval system on networks, if it concerns systems that support users visually, it is relevant.
+
+</top>
+
+<top>
+<num> Number: 111
+<title>Image recognition in ITS
+
+<desc> Description:
+I want papers about image recognition techniques in ITS.
+
+<narr> Narrative:
+ITS (Intelligent Transport Systems) are systems intended to improve the safety, efficiency, and environment of traffic. When we drive a car, we obtain most of our information from vision. Our ability to utilize such information is great, but an obstacle can cause accidents. Image recognition and driving support by a computer will help improve safety. However, there are many problems for practical use. I am searching for papers about such image recognition in ITS. Papers about ITS that are not related to images or that deal with moving image recognition not related to transport systems will not be relevant.
+
+</top>
+
+<top>
+<num> Number: 112
+<title>Induced discharge
+
+<desc> Description:
+I want papers about discharges induced by high power CO_2 lasers.
+
+<narr> Narrative:
+Laser-induced lightning is attracting attention as a method for protecting electric power plants from lightning. In laser-induced lightning, a laser-beam focused in the air forms a dielectric breakdown path and induces lightning to a safe place along the path. I am searching for papers about induced discharge by CO_2 lasers, which are the basic experiments to realize the method. An experiment that combines a CO_2 laser and another laser will be relevant. A paper only about discharge or experiments that induce streamers by laser will not be relevant. A paper about induced discharge by other lasers or experiments that induce discharge by other methods not using a laser will be partially relevant.
+
+</top>
+
+<top>
+<num> Number: 113
+<title>Gravitational wave detection
+
+<desc> Description:
+I want to search for papers about gravitational wave detection by laser interferometers.
+
+<narr> Narrative:
+The existence of gravitational waves was proved by Einstein's general relativity theory. They should be emitted by collision of binary neutron stars or supernovae. However, gravitational waves have never been observed directly. It is expected that a direct gravitational wave observatory will contribute to the development of astronomy and make it possible to verify relativity theory. I am searching for papers about gravitational wave detection by laser interferometers. At present, the LIGO project in the USA and the TAMA project in Japan are gravitational wave observatory projects using laser interferometers. Papers about such projects will be relevant. Documents about the technique of laser interferometry in which the objective is not gravitational detection will not be relevant.
+
+</top>
+
+<top>
+<num> Number: 114
+<title>Illegal access prevention in DHCP environments
+
+<desc> Description:
+Are there papers about illegal access prevention in DHCP environments?
+
+<narr> Narrative:
+Because of the present popularity of mobile computers, we can access networks at various places. In such cases, it is difficult to assign an IP address and so on by hand and assignment errors can have bad effects upon other computers. DHCP (Dynamic Host Configuration Protocol), which assigns an IP address dynamically, is now available. This provides users with access to the Internet from information outlets in universities or libraries. However, illegal clients can easily intrude. I want papers about prevention of such illegal access. Papers about the functions of DHCP that are not related to illegal access prevention are not relevant. Papers about illegal access prevention in the assignment of an IP address that are not related to the DHCP environment will be partially relevant.
+
+</top>
+
+<top>
+<num> Number: 115
+<title>Videostreaming
+
+<desc> Description:
+I want papers about videostreaming techniques.
+
+<narr> Narrative:
+Formerly, Web sites consisted of static pages, but Web pages generated dynamically with videostreaming techniques are now being introduced. In one method, whole video files are sent with HTTP as a way of providing video from Web sites. However, with protocols such as RTSP (Real Time Streaming Protocol), we may avoid downloading the whole file. I want to survey such videostreaming techniques. Papers about metadata for control of streaming media or about retrieval techniques using them will be relevant. Both systems on the Internet and, for example, those on networks within companies will be relevant.
+
+</top>
+
+<top>
+<num> Number: 116
+<title>Barrier-free design of public facilities
+
+<desc> Description:
+Documents reporting on the barrier-free design of public facilities
+
+<narr> Narrative:
+A relevant document will provide information on public facilities that are concerned with barrier-free design and normalization. Architectural research is relevant. A preferred document would contain case studies of actual facilities, hearings, studies on infrastructure, or development manuals drawn up by various local governments, but documents that simply refer to barrier-free design are NOT relevant.
+
+</top>
+
+<top>
+<num> Number: 117
+<title>Historical material on the Internet
+
+<desc> Description:
+Documents reporting on historical materials on the Internet
+
+<narr> Narrative:
+A relevant document will provide information on historical material on the Internet. A preferred document would contain information on ways of producing web databases and the retrieval function. Reports on database systems on the Internet are relevant documents, but historical studies that use historical materials on the Internet are NOT relevant.
+
+</top>
+
+<top>
+<num> Number: 118
+<title>TV conferencing
+
+<desc> Description:
+Distance education support systems using TV conferencing
+
+<narr> Narrative:
+A relevant document will provide information on the development of distance education support systems using TV conferencing. Preferred documents would present examples of using TV conferencing and discuss the results. Any reported methods of aiding remote teaching are relevant documents (for example, ways of utilizing satellite communication, the Internet, and ISDN circuits).
+
+</top>
+
+<top>
+<num> Number: 119
+<title>Values
+
+<desc> Description:
+Changes in values in Japan
+
+<narr> Narrative:
+A relevant document will discuss any changes in values or lifestyles and any factor of these changes in Japan. Examples will include the way of life, homes, housing needs, family budgets, leisure activities, and information. Studies based on research using interviews and questionnaires are relevant, but reports that simply refer to values without analysis are NOT relevant.
+
+</top>
+
+<top>
+<num> Number: 120
+<title>MPLS
+
+<desc> Description:
+Papers on the architecture of a label switch router and the implementation of MPLS
+
+<narr> Narrative:
+MPLS (Multi-Protocol Label Switching) has been proposed for the purposes of both fast routing and traffic engineering, which are required in the next generation Internet. In MPLS, label switch routers switch packets based not on their IP addresses but on their labels, and this label switch mechanism enables fast routing. Papers on the architecture of a label switch router or on the actual implementation of MPLS meet the requirements. Because a label switch router is required to support the core protocols of MPLS such as LDP (Label Distribution Protocol), papers on LDP also meet the requirements. Papers on traffic engineering using MPLS meet the requirements. Switching IP packets by mapping their IP addresses and labels without the MPLS mechanism also satisfies the requirements.
+
+</top>
+
+<top>
+<num> Number: 121
+<title>VoD systems on networks
+
+<desc> Description:
+Communication protocols for constructing VoD services on networks
+
+<narr> Narrative:
+The growth of the Internet has generated requirements for VoD (Video on Demand) services in which video content such as films is distributed on the network. In a VoD system, a video server distributes video content to receivers when required and therefore a communication protocol is necessary for the VoD system. Papers describing communication protocols for VoD meet the requirements. It is preferable if interactive functions such as pause, rewind, and fast-forward are presented. Papers on VoD systems or on the architecture of a VoD server that explicitly takes distribution in the network into consideration partly meet the requirement. The distributed media is not limited to bulk or stream data.
+
+</top>
+
+<top>
+<num> Number: 122
+<title>Literacy and education
+
+<desc> Description:
+Papers discussing the relationship between literacy improvement and education in the US and Japan
+
+<narr> Narrative:
+In writing a paper on the relationship between literacy improvement and functions of libraries in the US and Japan, I look for any academic papers on literacy in the both countries. Since no paper would be found which focuses especially on literacy and the library, papers on literacy and educational institutions will be most welcome. Literacy, I mean here, is literacy related to the language, such as the ability to read and write and functional literacy. The emerging concepts such as of information literacy, media literacy, computer literacy, are not included.
+
+</top>
+
+<top>
+<num> Number: 123
+<title>Biofilms
+
+<desc> Description:
+Are there any documents about the biofilms produced by some microorganisms in which chronic diseases are mentioned?
+
+<narr> Narrative:
+Biofilms are thought to occur when microorganisms grow in microcolonies embedded in the adherent gel surface on tunica mucosa, and teeth, or on catheters, prosthetic valves, and other artifacts. A relevant document will report on any studies into the relationship between biofilms produced by some microorganisms and chronic diseases. Documents that include reports on biofilms produced by non-medical microorganisms that do not cause infectious diseases are not relevant.
+
+</top>
+
+<top>
+<num> Number: 124
+<title>Antimicrobial agents
+
+<desc> Description:
+I would like to know the effects of various antibiotics against MRSA.
+
+<narr> Narrative:
+MRSA is significant in hospital-acquired bacterial infections, and resistance against drugs or antiseptics has been reported. I would like to research the effects of various antibiotics against MRSA. Documents that report on the effective antibiotic concentration (MIC: minimal inhibitory concentration, MBC: minimal bactericidal concentration) are preferred. Any antibacterial materials are relevant, but documents about MRSA infection control programs are NOT relevant.
+
+</top>
+
+<top>
+<num> Number: 125
+<title>Electrolytic acid water
+
+<desc> Description:
+I would like to learn about the antimicrobial activity of electrolytic acid water.
+
+<narr> Narrative:
+Electrolytic acid water has come into medical use because it has been found to act as a disinfectant against microorganisms, with lower costs and greater safety. I would like to know the antimicrobial activity of electrolytic water and how to use it effectively. Electrolytic acid water is better known for medical use, but I would also like to know about electrolytic alkaline water. Reports on disinfectant water that is not electrolytic are NOT relevant.
+
+</top>
+
+<top>
+<num> Number: 126
+<title>Infection control in hospitals
+
+<desc> Description:
+Are there any documents about procedures to reduce hospital-acquired infections?
+
+<narr> Narrative:
+Hospital-acquired infections like the infectious diseases caused by MRSA, Mycobacterium tuberculosis, and other microorganisms are serious social problems. I would like to research documents describing procedures to reduce hospital-acquired infections, as well as documents in which purification of the hospital environment, microorganisms detected and identified from the hospital environment, infection control programs, and the efforts of antimicrobial agents are described. The design of hospital air systems to prevent the recirculation of contaminated air from one area to another is an implied topic.
+
+</top>
+
+<top>
+<num> Number: 127
+<title>Ischemic heart disease
+
+<desc> Description:
+Are there any risk factors for ischemic heart disease?
+
+<narr> Narrative:
+I would like to find epidemiological studies reporting on the relation between ischemic heart disease and risk factors such as lifestyle, nutrition, alcohol consumption, smoking, and genetic factors. Reports on the mechanism of onset or studies with animals are NOT relevant.
+
+</top>
+
+<top>
+<num> Number: 128
+<title>Coagulase-negative Staphylococci
+
+<desc> Description:
+Are there any documents about coagulase-negative Staphylococci that cause infectious diseases?
+
+<narr> Narrative:
+Coagulase activity is used to identify Staphylococcus aureus. Staphylococcal strains that do not have this activity are called coagulase-negative Staphylococci (CNS). These are not strongly pathogenic. However, there have recently been studies that infectious diseases caused by CNS are increasing. I would like to find various kinds of studies, for example, case reports, mechanisms, detection methods, therapies, and drug susceptibility.
+
+</top>
+
+<top>
+<num> Number: 129
+<title>Cosmological constant
+
+<desc> Description:
+Recent theoretical or quantitative development of the cosmological constant problem, without assuming super-symmetry
+
+<narr> Narrative:
+(Einstein regretted adding the cosmological constant to his equation as the worst mistake in his life. However, in recent observational cosmology, the existence of the cosmological constant with a small but not zero value is considered proved. On the other hand, according to elementary particle theory, the cosmological constant has the meaning of the vacuum energy and can take a large value, as many as 120 orders of magnitude different from the observed value. The mystery of why the observed value is so small is called the cosmological constant problem.) A relevant document will provide recent theoretical or experimental research related to the cosmological constant problem, including an estimate, or the effect of the cosmological constant. However, theoretical research in which super-symmetry is assumed and only a method or plan of measuring the cosmological constant is described would NOT be relevant.
+
+</top>
+
+<top>
+<num> Number: 130
+<title>Analyticity of the S-matrix
+
+<desc> Description:
+To what extent is the analyticity of the S-matrix necessary?
+
+<narr> Narrative:
+In quantum field theory, a particle is represented as the pole of the scattering matrix (S-matrix). A relevant document would describe the extent to which the analyticity of the S-matrix is necessary so as not to contradict previous experimental results. Documents that rigorously discuss necessary conditions for analyticity, for instance the possibility of a multi-valued function, would be most relevant. Relevant research is that in which a rigorous solution or the distribution of the pole of the S-matrix are obtained, in correspondence with the assumption of a certain concrete, physical condition or model. Also relevant is research that, in contrast, examines the conditions for divergence. However, research only about analyses with S-matrices or only on the symmetry of the S-matrix is NOT relevant.
+
+</top>
+
+<top>
+<num> Number: 131
+<title>Instanton
+
+<desc> Description:
+What is the evidence that an instanton really exists in QCD or other quantum field theories?
+
+<narr> Narrative:
+In QCD (quantum chromodynamics), it is assumed necessary to include the non-perturbational configuration of a field called an instanton in the calculation of the pass integral by the quantum effect. A relevant document would be any form of evidence for the existence of the instanton, including an experiment, a numerical simulation, or a strict solution. In particular, any document that explains why the instanton should be included in the calculations would be relevant. Similarly, evidence such as for a monopole configuration or a cosmic string is partially relevant.
+
+</top>
+
+<top>
+<num> Number: 132
+<title>Singularity
+
+<desc> Description:
+What kinds of singularities inevitably appear in physical systems as the solutions of differential equations?
+
+<narr> Narrative:
+In a certain kind of partial differential equation, singularities inevitably appear with time evolution, even if there is no singularity in the boundary condition at the initial state. A relevant document would contain an example of a singularity that appears inevitably in the physical system. A relevant document may also contain a theorem in which the existence of a singularity is shown under a certain physical assumption by making use of a differential equation. However, documents are not relevant if they do not refer to the necessity of the singularity, or if they treat only the mathematical characteristics of the equation or the singularity, with no physical object specified. A singularity not related to a differential equation, such as in a image, is also not relevant.
+
+</top>
+
+<top>
+<num> Number: 133
+<title>Higgs boson
+
+<desc> Description:
+How is the mass of the Higgs boson predicted?
+
+<narr> Narrative:
+The Higgs boson is the only particle that appears in the standard theory of elementary particles that has not yet been observed experimentally. However, because the form of its interaction is determined, the mass can be predicted from experimental results of reactions in which the Higgs boson indirectly takes part. An experimental result on the mass of the Higgs boson would be relevant, as also would be a theoretical prediction of the mass, including such topics as the range of values it should take, the method used to estimate it, and the reactions involved. In particular, a document in which an experiment is concretely compared with the theory would be most relevant.
+
+</top>
+
+<top>
+<num> Number: 134
+<title>Quantum gravity
+
+<desc> Description:
+What are the difficulties in gravity quantization?
+
+<narr> Narrative:
+It is considered that a graviton mediates gravity just as a photon mediates electromagnetic force. However, no one has yet succeeded in quantizing gravity. A relevant document would describe the theoretical difficulties of quantum gravity, such as why gravity quantization is especially difficult among the four forces, what does 'quantizing gravity' actually mean, or if it has been proved impossible.
+
+</top>
+
+<top>
+<num> Number: 135
+<title>Phase transition of vacuum
+
+<desc> Description:
+Documents will discuss the structure of the phase transition of the vacuum in the early universe.
+
+<narr> Narrative:
+It is assumed that, in the early universe, the vacuum underwent repeated phase transitions, which resulted in generating the mass and the baryons forming present matter. A relevant document would contain detailed discussion of the dynamics as to when and how such a phase transition took place, or what it resulted in.
+
+</top>
+
+<top>
+<num> Number: 136
+<title>DHA
+
+<desc> Description:
+Documents will report on the relation between DHA and brain functions.
+
+<narr> Narrative:
+Fish oil is rich in the unsaturated fatty acid, Docosahexaenoate (DHA). Intake of DHA has been reported to affect learning ability. A relevant document will report on the relation between DHA and brain functions. It will include either in vivo and in vitro experiments, or epidemiological studies. Documents that discuss the relation between DHA and cerebral vascular accidents such as cerebral infarction or cerebral thrombosis are excluded.
+
+</top>
+
+<top>
+<num> Number: 137
+<title>DNA chip
+
+<desc> Description:
+DNA chip technology
+
+<narr> Narrative:
+DNA chip technology was recently developed for the analysis of DNA sequences, enabling simultaneous analysis of all genes of a genome. A relevant document will explain this technology. It is desirable that the documents include discussions on the efficiency and economy of this technology. Reports on DNA analyses that use this technology merely as a method are excluded.
+
+</top>
+
+<top>
+<num> Number: 138
+<title>Stable carbene
+
+<desc> Description:
+The synthesis of the stable triplet carbenes
+
+<narr> Narrative:
+The synthesis of stable singlet carbenes has been reported recently. A relevant document will report on the synthesis of stable TRIPLET carbenes, which are expected to have magnetism. Reports that discuss the lifetime or the magnetism of the carbenes are acceptable.
+
+</top>
+
+<top>
+<num> Number: 139
+<title>Sick building syndrome
+
+<desc> Description:
+Documents will report on the "sick building syndrome," which includes an allergic reaction to chemicals such as formaldehyde.
+
+<narr> Narrative:
+Recently, "sick building syndrome" has gained attention as a problem of indoor environments. It is said that the chemicals in wallpapers and adhesives cause hypersensitivity. A relevant document will report on the syndrome. Documents may be scientifically pertinent papers or reports about questionnaires. Reports on solutions to the syndrome are acceptable.
+
+</top>
+
+<top>
+<num> Number: 140
+<title>Enantiomers
+
+<desc> Description:
+What research has been done on asymmetric synthesis by the use of biocatalysts?
+
+<narr> Narrative:
+Enantiomers have identical physical properties except for the direction of rotation of the plane of polarized light. When enantiomers are formed, they must be separated by specialized techniques. Asymmetric synthesis of a compound produces only one of its enantiomers, so that a separation process becomes unnecessary. A document that studies asymmetric synthesis by the use of biocatalysts is relevant.
+
+</top>
+
+<top>
+<num> Number: 141
+<title>Molecular design
+
+<desc> Description:
+What research has been done on molecular design by using ab initio molecular orbital methods?
+
+<narr> Narrative:
+A relevant document will contain valuable information on molecular design by using ab initio molecular orbital methods. A document using molecular dynamics (MD) is not relevant. A document using density functional theory (DFT) is relevant.
+
+</top>
+
+<top>
+<num> Number: 142
+<title>Paraphrase
+
+<desc> Description:
+Papers which discuss paraphrasing
+
+<narr> Narrative:
+I want papers written about paraphrase, which is defined as the transformation of an expression to a different one with the same meaning in the same language. Paraphrase includes not only syntactical transformation but also morphological or semantic transformation in which derivatives or synonyms appear. Further, paraphrase is not necessarily a transformation to a simpler expression. A paper written about the application of paraphrase also satisfies this retrieval request.
+
+</top>
+
+<top>
+<num> Number: 143
+<title>Handicapped persons' use of computer terminals
+
+<desc> Description:
+Papers that mention visually impaired persons' use of library computer terminals or information retrieval systems
+
+<narr> Narrative:
+I want papers written about visually impaired persons using OPAC or library databases, or about the development of user interfaces for such people. Both papers about in-library use of computer terminals and papers about remote access via a network are relevant. Papers about visually impaired persons and digital libraries also satisfy this retrieval request. Papers about interfaces for information retrieval for visually impaired persons satisfy this retrieval request. However, papers about general computer interfaces for such people do not satisfy the request if they are not directly related to libraries or information retrieval. Papers about handicapped persons who have no sight handicap do not satisfy the request.
+
+</top>
+
+<top>
+<num> Number: 144
+<title>Parsing algorithm
+
+<desc> Description:
+Papers published in 1990's in which a new parsing algorithm is proposed
+
+<narr> Narrative:
+Many parsing algorithms such as the Earley method, the CYK algorithm, and the chart algorithm have been proposed. I want papers that modify these existing algorithms, or propose a completely original algorithm. The language parsed by the algorithm is not specified. Papers whose algorithm was original at the time of publishing satisfy this retrieval request. I want papers published since 1990.
+
+</top>
+
+<top>
+<num> Number: 145
+<title>Library location
+
+<desc> Description:
+Papers that discuss how the locations of public libraries affect their use
+
+<narr> Narrative:
+I want papers that discuss how the locations of public libraries affect the number of visitors, the number of items circulated, the sphere of use, and so on. Both theoretical studies and case studies satisfy this retrieval request. Papers about other types of libraries partially satisfy the request.
+
+</top>
+
+<top>
+<num> Number: 146
+<title>DNA computer
+
+<desc> Description:
+Architecture of the DNA computer
+
+<narr> Narrative:
+In recent years, the use of DNA computers has been advocated. A DNA computer is a problem-solving system using DNA sequences in areas such as a solution of the Hamilton problem suggested by Adleman. Solutions for specific problems in other areas have also been suggested. This search request demands articles concerned with DNA computer-like systems that involve applications of the chemical action and reaction of DNA. Articles that discuss RNA computing are considered to be relevant. Articles that deal with suggestion of executable experiments not in fact executed are also considered to be relevant. Articles that discuss simulations are considered to be relevant.
+
+</top>
+
+<top>
+<num> Number: 147
+<title>Electromagnetic characteristics of structures
+
+<desc> Description:
+Fundamental studies of the electromagnetic characteristics of structures
+
+<narr> Narrative:
+Recently, interference to telecommunications caused by structures has been reported. In addition, obstacles to TV radio waves have been reported. This search request demands articles about the electromagnetic characteristics of structures and structural materials, including common materials, new materials, and composite materials.Research on structures as communication obstacles that is fully statistically analyzed is considered to be relevant, but articles that simply report on these obstacles are not relevant. Simulations only are not relevant. Articles about the influence of electromagnetic waves on structures or their mutual action are considered to be partially relevant. However, articles about applications of the electromagnetic characteristics of materials, for instance, in non-destructive tests and others, are not relevant. Articles about stress analysis or production methods are not relevant.
+
+</top>
+
+<top>
+<num> Number: 148
+<title>Finite Element Method analysis
+
+<desc> Description:
+Finite Element Method analysis of prestressed concrete structures
+
+<narr> Narrative:
+The Finite Element Method is an effective analysis method on structures that have a complex form. This search request demands articles about Finite Element Method analysis or the design of the prestressed superstructure of bridges and concrete beams. For example, comparisons between Finite Element Method analysis and other analysis methods are relevant. Articles only about vibration analysis are not considered to be relevant. Articles about the analysis of distortion or deflection are relevant. Articles about the analysis about rigid frames are relevant. Articles that discuss the prestressed concrete component of composite structures are considered to be relevant. Articles that deal with structures other than prestressed concrete bridges and concrete beams are not relevant.
+
+</top>
+
+<top>
+<num> Number: 149
+<title>Nuclear Magnetic Resonance Tomography
+
+<desc> Description:
+Research on human memory and learning using Nuclear Magnetic Resonance Tomography
+
+<narr> Narrative:
+This search request demands articles that deal with analysis of human memory or learning by Nuclear Magnetic Resonance Tomography. Particularly relevant articles are about imaging of the human brain by Nuclear Magnetic Resonance Tomography. However, articles about human memory or learning by using Nuclear Magnetic Resonance Tomography together with other methods are also considered to be relevant. The research will be conducted on non-handicapped people or handicapped people. Articles about analysis of human memory and learning are highly relevant. Research for the purpose of diagnosis or medical treatment that contain analysis of brain function are also relevant. Research for the purpose of instruction is not relevant.
+
+</top>
+
