@@ -104,14 +104,30 @@ do
 done
 
 # create TREC data files with (automatically) generated keyphrases information
-for TOP in 5 10 15 20
+for TOP in 5 10
 do
-    EXP="ntcir-2+top${TOP}-keyphrases"
+    EXP="ntcir-2+top${TOP}-all.keyphrases"
     for FILE in data/docs/*.gz
     do
         python3 src/ntcir_to_trec.py --input ${FILE} \
                                      --output data/docs/${EXP}/${FILE##*/} \
-                                     --path_to_keyphrases data/keyphrases/${FILE##*/}.copyrnn.json.gz \
+                                     --path_to_keyphrases data/keyphrases/${FILE##*/}.CopyRNN.all.json.gz \
+                                     --nb_keyphrases ${TOP}
+    done
+    EXP="ntcir-2+top${TOP}-abs.keyphrases"
+    for FILE in data/docs/*.gz
+    do
+        python3 src/ntcir_to_trec.py --input ${FILE} \
+                                     --output data/docs/${EXP}/${FILE##*/} \
+                                     --path_to_keyphrases data/keyphrases/${FILE##*/}.CopyRNN.abs.json.gz \
+                                     --nb_keyphrases ${TOP}
+    done
+    EXP="ntcir-2+top${TOP}-pres.keyphrases"
+    for FILE in data/docs/*.gz
+    do
+        python3 src/ntcir_to_trec.py --input ${FILE} \
+                                     --output data/docs/${EXP}/${FILE##*/} \
+                                     --path_to_keyphrases data/keyphrases/${FILE##*/}.CopyRNN.pres.json.gz \
                                      --nb_keyphrases ${TOP}
     done
 done
@@ -119,12 +135,12 @@ done
 # create TREC data files with (automatically) generated keyphrases and keyword information
 for TOP in 5 10
 do
-    EXP="ntcir-2+keywords+top${TOP}-keyphrases"
+    EXP="ntcir-2+keywords+top${TOP}-all.keyphrases"
     for FILE in data/docs/*.gz
     do
         python3 src/ntcir_to_trec.py --input ${FILE} \
                                      --output data/docs/${EXP}/${FILE##*/} \
-                                     --path_to_keyphrases data/keyphrases/${FILE##*/}.copyrnn.json.gz \
+                                     --path_to_keyphrases data/keyphrases/${FILE##*/}.CopyRNN.all.json.gz \
                                      --nb_keyphrases ${TOP} \
                                      --include_keywords
     done
@@ -137,8 +153,8 @@ We are now ready for indexing!
 
 ```bash
 # create indexes
-# for EXP in "ntcir-2" "ntcir-2+keywords" "ntcir-2+top5-keyphrases" "ntcir-2+top10-keyphrases" "ntcir-2+top15-keyphrases" "ntcir-2+top20-keyphrases" "ntcir-2+keywords+top5-keyphrases" "ntcir-2+keywords+top10-keyphrases" 
-for EXP in "ntcir-2+keywords+top10-keyphrases" 
+# for EXP in "ntcir-2" "ntcir-2+keywords" "ntcir-2+top5-all.keyphrases" "ntcir-2+top5-abs.keyphrases" "ntcir-2+top5-pres.keyphrases" "ntcir-2+top10-all.keyphrases" "ntcir-2+top10-abs.keyphrases" "ntcir-2+top10-pres.keyphrases"
+for EXP in "ntcir-2+keywords+top5-all.keyphrases" "ntcir-2+keywords+top10-all.keyphrases" 
 do
     sh anserini/target/appassembler/bin/IndexCollection \
         -collection TrecCollection \
@@ -214,8 +230,8 @@ python3 src/topics_to_trec.py \
 We are now ready to retrieve !
 
 ```bash
-# for EXP in "ntcir-2" "ntcir-2+keywords" "ntcir-2+top5-keyphrases" "ntcir-2+top10-keyphrases" "ntcir-2+top15-keyphrases" "ntcir-2+top20-keyphrases" "ntcir-2+keywords+top5-keyphrases" "ntcir-2+keywords+top10-keyphrases" 
-for EXP in "ntcir-2+keywords+top10-keyphrases"
+# for EXP in "ntcir-2" "ntcir-2+keywords" "ntcir-2+top5-all.keyphrases" "ntcir-2+top5-abs.keyphrases" "ntcir-2+top5-pres.keyphrases" "ntcir-2+top10-all.keyphrases" "ntcir-2+top10-abs.keyphrases" "ntcir-2+top10-pres.keyphrases"
+for EXP in "ntcir-2+keywords+top5-all.keyphrases" "ntcir-2+keywords+top10-all.keyphrases" 
 do
     for MODEL in "bm25" "ql"
     do
@@ -239,8 +255,8 @@ done
 ## Evaluation
 
 ```bash
-# for EXP in "ntcir-2" "ntcir-2+keywords" "ntcir-2+top5-keyphrases" "ntcir-2+top10-keyphrases" "ntcir-2+top15-keyphrases" "ntcir-2+top20-keyphrases" "ntcir-2+keywords+top5-keyphrases" "ntcir-2+keywords+top10-keyphrases"
-for EXP in "ntcir-2+keywords+top10-keyphrases"  
+# for EXP in "ntcir-2" "ntcir-2+keywords" "ntcir-2+top5-all.keyphrases" "ntcir-2+top5-abs.keyphrases" "ntcir-2+top5-pres.keyphrases" "ntcir-2+top10-all.keyphrases" "ntcir-2+top10-abs.keyphrases" "ntcir-2+top10-pres.keyphrases"
+for EXP in "ntcir-2+keywords+top5-all.keyphrases" "ntcir-2+keywords+top10-all.keyphrases" 
 do
     echo "Experiment: ${EXP}"
     for MODEL in "bm25" "ql"
@@ -266,26 +282,34 @@ done
 | NTCIR-2           | 0.2212 | 0.2374 | 0.2164 | 0.2067 |
 | +keywords         | 0.2379 | 0.2592 | 0.2376 | 0.2373 |
 |                   |        |        |        |        |
-| +top5-keyphrases  | 0.2244 | 0.2452 | 0.2211 | 0.2277 |
-| +top10-keyphrases | 0.2247 | 0.2385 | 0.2228 | 0.2282 |
-| +top15-keyphrases | 0.2246 | 0.2412 | 0.2198 | 0.2388 |
-| +top20-keyphrases | 0.2292 | 0.2431 | 0.2265 | 0.2357 |
-|                   |        |        |        |        |
-| +keywords+top5-keyphrases  | 0.2382 | 0.2665 | 0.2426 | 0.2416 |
-| +keywords+top10-keyphrases | 0.2359 | 0.2650 | 0.2390 | 0.2452 |
+| +top5-all.keyphrases   | 0.2228 | 0.2453 | 0.2221 | 0.2260 |
+| +top5-pres.keyphrases  | 0.2214 | 0.2405 | 0.2169 | 0.2143 |
+| +top5-abs.keyphrases   | 0.2204 | 0.2367 | 0.2164 | 0.2172 |
+|                        |        |        |        |        |
+| +top10-all.keyphrases  | 0.2211 | 0.2382 | 0.2223 | 0.2212 |
+| +top10-pres.keyphrases | 0.2216 | 0.2420 | 0.2162 | 0.2098 |
+| +top10-abs.keyphrases  | 0.2219 | 0.2332 | 0.2147 | 0.2108 |
+|                        |        |        |        |        |
+| +keywords+top5-all.keyphrases | 0.2380 | 0.2612 | 0.2413 | 0.2362 |
+| +keywords+top10-all.keyphrases | 0.2341 | 0.2544 | 0.2398 | 0.2392 |
+
+
 
 | P30               | BM25   | +RM3   | QL     | +RM3   |
 :-------------------|--------|--------|--------|--------|
 | NTCIR-2           | 0.1531 | 0.1714 | 0.1544 | 0.1626 |
 | +keywords         | 0.1571 | 0.1769 | 0.1605 | 0.1707 |
 |                   |        |        |        |        |
-| +top5-keyphrases  | 0.1544 | 0.1680 | 0.1578 | 0.1687 |
-| +top10-keyphrases | 0.1558 | 0.1680 | 0.1592 | 0.1701 |
-| +top15-keyphrases | 0.1558 | 0.1680 | 0.1578 | 0.1687 |
-| +top20-keyphrases | 0.1558 | 0.1667 | 0.1578 | 0.1646 |
-|                   |        |        |        |        |
-| +keywords+top5-keyphrases  | 0.1612 | 0.1782 | 0.1619 | 0.1728 |
-| +keywords+top10-keyphrases | 0.1619 | 0.1782 | 0.1653 | 0.1789 |
+| +top5-all.keyphrases   | 0.1578 | 0.1701 | 0.1605 | 0.1701 |
+| +top5-pres.keyphrases  | 0.1517 | 0.1714 | 0.1510 | 0.1660 |
+| +top5-abs.keyphrases   | 0.1592 | 0.1673 | 0.1592 | 0.1707 |
+|                        |        |        |        |        |
+| +top10-all.keyphrases  | 0.1585 | 0.1680 | 0.1578 | 0.1694 |
+| +top10-pres.keyphrases | 0.1517 | 0.1714 | 0.1503 | 0.1633 |
+| +top10-abs.keyphrases  | 0.1558 | 0.1660 | 0.1558 | 0.1578 |
+|                        |        |        |        |        |
+| +keywords+top5-all.keyphrases | 0.1633 | 0.1776 | 0.1653 | 0.1762 |
+| +keywords+top10-all.keyphrases | 0.1633 | 0.1762 | 0.1646 | 0.1735 |
 
 
 ## Automatic keyphrase generation
