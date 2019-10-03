@@ -252,6 +252,17 @@ do
 done
 ```
 
+Note that we did not modify the default topic field used for retrieving 
+documents. It is set to `title` by default according to anserini
+`SearchCollection` helper:
+
+```
+ -topicfield VAL             : Which field of the query should be used, default
+                               "title". For TREC ad hoc topics, description or
+                               narrative can be used. (default: title)
+```
+
+
 ## Evaluation
 
 ```bash
