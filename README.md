@@ -314,14 +314,63 @@ done
 
 ## Automatic keyphrase generation
 
-First, we convert NTCIR SGML formatted documents to jsonl format for easier processing.
+Example (no author's keywords provided)
 
-```bash
-# create data files WITHOUT keyword information 
-python3 src/ntcir_to_jsonl.py --input data/docs/ntc1-e1.mod \
-                              --output data/docs/ntc1-e1.jsonl
-python3 src/ntcir_to_jsonl.py --input data/docs/ntc2-e1g \
-                              --output data/docs/ntc2-e1g.jsonl
-python3 src/ntcir_to_jsonl.py --input data/docs/ntc2-e1k \
-                              --output data/docs/ntc2-e1k.jsonl
+```
+<DOC>
+    <DOCNO>gakkai-e-0000000538</DOCNO>
+    <TITLE>
+        A Hybrid PWM for Controlling the Harmonic Contents in the output of
+        Voltage Inuerter
+    </TITLE>
+    <TEXT>
+        The generalized method of harmonics elimination £1 is one of the few
+        methods that deal with general solution for the harmonics problem.
+        However, because the complex solution of the nonlinear equations in
+        this method only a limited number of harmonics can be eliminated with a
+        reasonable time and design constrains. To overcome these limitations and
+        have a generalized method for harmonics reduction a simplified method to
+        minimize and control the harmonic contents in the output of voltage
+        inverter is introduced. With presented method any group of harmonics
+        can be controlled within the design requirements while the other
+        harmonics up to any order are kept within a minimum allowable range.
+    </TEXT>
+</DOC>
+```
+
+CopyRNN
+
+```
+|-- gakkai-e-0000000538
+    |-- present: ["hybrid"], ["pwm"], ["\u00a31"], ["design"], 
+                 ["control"], ["method"], ["group"]
+    |-- absent: ["harmonics"], ["voltage inverter"], ["generalized method"], 
+                ["voltage inuerter"], ["nonlinear equations"], ["voltage"], 
+                ["inuerter"], ["inverter"], ["general"], 
+                ["minimum allowable range"], ["finite element"], 
+                ["allowable range"], ["nonlinear systems"]
+    |-- all: ["harmonics"], ["voltage inverter"], ["hybrid"],
+             ["generalized method"], ["pwm"], ["voltage inuerter"], 
+             ["nonlinear equations"], ["voltage"], ["inuerter"], 
+             ["\u00a31"], ["design"], ["control"], ["inverter"], 
+             ["method"], ["general"], ["minimum allowable range"], 
+             ["finite element"], ["allowable range"], ["group"], 
+             ["nonlinear systems"]]
+```
+
+MultipartiteRank
+
+```
+|-- gakkai-e-0000000538
+  |-- all: ["harmonic contents"], ["method"], ["output"], ["limited number"], 
+           ["design"], ["general solution"], ["harmonics"], ["voltage inverter"],
+           ["reasonable time"], ["group"], ["nonlinear equations"],
+           ["hybrid pwm"], ["limitations"], ["complex solution"], ["order"],
+           ["minimum allowable range"]
+  |-- absent: ["harmonic contents"], ["limited number"], ["general solution"],
+              ["harmonics"], ["voltage inverter"], ["reasonable time"],
+              ["nonlinear equations"], ["limitations"], ["complex solution"],
+              ["minimum allowable range"]
+  |-- present: ["method"], ["output"], ["design"], ["group"], ["hybrid pwm"],
+               ["order"]
 ```
