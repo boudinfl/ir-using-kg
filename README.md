@@ -104,7 +104,7 @@ do
 done
 
 # create TREC data files with (automatically) generated keyphrases information
-for TOP in 5 10
+for TOP in 5
 do
     EXP="ntcir-2+top${TOP}-all.keyphrases"
     for FILE in data/docs/*.gz
@@ -133,7 +133,7 @@ do
 done
 
 # create TREC data files with (automatically) generated keyphrases and keyword information
-for TOP in 5 10
+for TOP in 5
 do
     EXP="ntcir-2+keywords+top${TOP}-all.keyphrases"
     for FILE in data/docs/*.gz
@@ -154,7 +154,7 @@ We are now ready for indexing!
 ```bash
 # create indexes
 # for EXP in "ntcir-2" "ntcir-2+keywords" "ntcir-2+top5-all.keyphrases" "ntcir-2+top5-abs.keyphrases" "ntcir-2+top5-pres.keyphrases" "ntcir-2+top10-all.keyphrases" "ntcir-2+top10-abs.keyphrases" "ntcir-2+top10-pres.keyphrases"
-for EXP in "ntcir-2+keywords+top5-all.keyphrases" "ntcir-2+keywords+top10-all.keyphrases" 
+for EXP in "ntcir-2+top5-all.keyphrases" "ntcir-2+top5-abs.keyphrases" "ntcir-2+top5-pres.keyphrases" "ntcir-2+keywords+top5-all.keyphrases"
 do
     sh anserini/target/appassembler/bin/IndexCollection \
         -collection TrecCollection \
@@ -231,9 +231,9 @@ We are now ready to retrieve !
 
 ```bash
 # for EXP in "ntcir-2" "ntcir-2+keywords" "ntcir-2+top5-all.keyphrases" "ntcir-2+top5-abs.keyphrases" "ntcir-2+top5-pres.keyphrases" "ntcir-2+top10-all.keyphrases" "ntcir-2+top10-abs.keyphrases" "ntcir-2+top10-pres.keyphrases"
-for EXP in "ntcir-2+keywords+top5-all.keyphrases" "ntcir-2+keywords+top10-all.keyphrases" 
+for EXP in "ntcir-2+top5-all.keyphrases" "ntcir-2+top5-abs.keyphrases" "ntcir-2+top5-pres.keyphrases" "ntcir-2+keywords+top5-all.keyphrases"
 do
-    for MODEL in "bm25" "ql"
+    for MODEL in "bm25"
     do
         # compute model
         sh anserini/target/appassembler/bin/SearchCollection \
@@ -267,10 +267,10 @@ documents. It is set to `title` by default according to anserini
 
 ```bash
 # for EXP in "ntcir-2" "ntcir-2+keywords" "ntcir-2+top5-all.keyphrases" "ntcir-2+top5-abs.keyphrases" "ntcir-2+top5-pres.keyphrases" "ntcir-2+top10-all.keyphrases" "ntcir-2+top10-abs.keyphrases" "ntcir-2+top10-pres.keyphrases"
-for EXP in "ntcir-2+keywords+top5-all.keyphrases" "ntcir-2+keywords+top10-all.keyphrases" 
+for EXP in "ntcir-2+top5-all.keyphrases" "ntcir-2+top5-abs.keyphrases" "ntcir-2+top5-pres.keyphrases" "ntcir-2+keywords+top5-all.keyphrases"
 do
     echo "Experiment: ${EXP}"
-    for MODEL in "bm25" "ql"
+    for MODEL in "bm25"
     do
         echo "Eval: ${MODEL}"
         anserini/eval/trec_eval.9.0.4/trec_eval -m map -m P.30 \
@@ -288,39 +288,29 @@ done
 ## Results
 
 
-| MAP               | BM25   | +RM3   | QL     | +RM3   |
-:-------------------|--------|--------|--------|--------|
-| NTCIR-2           | 0.2212 | 0.2374 | 0.2164 | 0.2067 |
-| +keywords         | 0.2379 | 0.2592 | 0.2376 | 0.2373 |
-|                   |        |        |        |        |
-| +top5-all.keyphrases   | 0.2228 | 0.2453 | 0.2221 | 0.2260 |
-| +top5-pres.keyphrases  | 0.2214 | 0.2405 | 0.2169 | 0.2143 |
-| +top5-abs.keyphrases   | 0.2204 | 0.2367 | 0.2164 | 0.2172 |
-|                        |        |        |        |        |
-| +top10-all.keyphrases  | 0.2211 | 0.2382 | 0.2223 | 0.2212 |
-| +top10-pres.keyphrases | 0.2216 | 0.2420 | 0.2162 | 0.2098 |
-| +top10-abs.keyphrases  | 0.2219 | 0.2332 | 0.2147 | 0.2108 |
-|                        |        |        |        |        |
-| +keywords+top5-all.keyphrases | 0.2380 | 0.2612 | 0.2413 | 0.2362 |
-| +keywords+top10-all.keyphrases | 0.2341 | 0.2544 | 0.2398 | 0.2392 |
+| MAP               | BM25   | +RM3   |
+:-------------------|--------|--------|
+| NTCIR-2           | 0.2212 | 0.2374 |
+| +keywords         | 0.2379 | 0.2592 |
+|                   |        |        |
+| +top5-all.keyphrases   | 0.2228 | 0.2453 |
+| +top5-pres.keyphrases  | 0.2233 | 0.2460 |
+| +top5-abs.keyphrases   | 0.2144 | 0.2149 |
+|                        |        |        |
+| +keywords+top5-all.keyphrases | 0.2380  | 0.2612 |
 
 
 
-| P30               | BM25   | +RM3   | QL     | +RM3   |
-:-------------------|--------|--------|--------|--------|
-| NTCIR-2           | 0.1531 | 0.1714 | 0.1544 | 0.1626 |
-| +keywords         | 0.1571 | 0.1769 | 0.1605 | 0.1707 |
-|                   |        |        |        |        |
-| +top5-all.keyphrases   | 0.1578 | 0.1701 | 0.1605 | 0.1701 |
-| +top5-pres.keyphrases  | 0.1517 | 0.1714 | 0.1510 | 0.1660 |
-| +top5-abs.keyphrases   | 0.1592 | 0.1673 | 0.1592 | 0.1707 |
-|                        |        |        |        |        |
-| +top10-all.keyphrases  | 0.1585 | 0.1680 | 0.1578 | 0.1694 |
-| +top10-pres.keyphrases | 0.1517 | 0.1714 | 0.1503 | 0.1633 |
-| +top10-abs.keyphrases  | 0.1558 | 0.1660 | 0.1558 | 0.1578 |
-|                        |        |        |        |        |
-| +keywords+top5-all.keyphrases | 0.1633 | 0.1776 | 0.1653 | 0.1762 |
-| +keywords+top10-all.keyphrases | 0.1633 | 0.1762 | 0.1646 | 0.1735 |
+| P30               | BM25   | +RM3   |
+:-------------------|--------|--------|
+| NTCIR-2           | 0.1531 | 0.1714 |
+| +keywords         | 0.1571 | 0.1769 |
+|                   |        |        |
+| +top5-all.keyphrases   | 0.1578 | 0.1701 |
+| +top5-pres.keyphrases  | 0.1571 | 0.1680 |
+| +top5-abs.keyphrases   | 0.1483 | 0.1599 |
+|                        |        |        |
+| +keywords+top5-all.keyphrases | 0.1633 | 0.1776 |
 
 
 ## Automatic keyphrase generation
@@ -353,35 +343,43 @@ CopyRNN
 
 ```
 |-- gakkai-e-0000000538
-    |-- present: ["hybrid"], ["pwm"], ["\u00a31"], ["design"], 
-                 ["control"], ["method"], ["group"]
-    |-- absent: ["harmonics"], ["voltage inverter"], ["generalized method"], 
-                ["voltage inuerter"], ["nonlinear equations"], ["voltage"], 
-                ["inuerter"], ["inverter"], ["general"], 
-                ["minimum allowable range"], ["finite element"], 
-                ["allowable range"], ["nonlinear systems"]
-    |-- all: ["harmonics"], ["voltage inverter"], ["hybrid"],
-             ["generalized method"], ["pwm"], ["voltage inuerter"], 
-             ["nonlinear equations"], ["voltage"], ["inuerter"], 
-             ["\u00a31"], ["design"], ["control"], ["inverter"], 
-             ["method"], ["general"], ["minimum allowable range"], 
-             ["finite element"], ["allowable range"], ["group"], 
-             ["nonlinear systems"]]
+
+    |-- present: ['harmonics'], ['voltage inverter'], ['hybrid'],
+                 ['generalized method'], ['pwm'], ['voltage inuerter'],
+                 ['nonlinear equations'], ['voltage'], ['inuerter'], ['£1'],
+                 ['design'], ['control'], ['inverter'], ['method'], ['general'],
+                 ['minimum allowable range'], ['allowable range'], ['group'],
+                 ['nonlinear'], ['elimination']
+                 
+    |-- absent: ['finite element'], ['nonlinear systems'], ['optimization'],
+                ['wavelets'], ['chaos'], ['stability'],
+                ['computational geometry'], ['65n30'], ['preconditioning'],
+                ['fem'], ['convergence'], ['regularization'],
+                ['numerical analysis'], ['simulation'], ['uncertainty'],
+                ['computational fluid dynamics'], ['interpolation'],
+                ['algorithms'], ['cryptography'], ['electromagnetics']]
+
+    |-- all: ['harmonics'], ['voltage inverter'], ['hybrid'],
+             ['generalized method'], ['pwm'], ['voltage inuerter'],
+             ['nonlinear equations'], ['voltage'], ['inuerter'], ['£1'],
+             ['design'], ['control'], ['inverter'], ['method'], ['general'],
+             ['minimum allowable range'], ['finite element'],
+             ['allowable range'], ['group'], ['nonlinear systems']
 ```
 
 MultipartiteRank
 
 ```
+with gzip.open('ntc1-e1.gz.MultipartiteRank.pres.json.gz', 'rt') as f:
+    key = json.loads(f.read())
+    print(key["gakkai-e-0000000538"])
+
 |-- gakkai-e-0000000538
-  |-- all: ["harmonic contents"], ["method"], ["output"], ["limited number"], 
-           ["design"], ["general solution"], ["harmonics"], ["voltage inverter"],
-           ["reasonable time"], ["group"], ["nonlinear equations"],
-           ["hybrid pwm"], ["limitations"], ["complex solution"], ["order"],
-           ["minimum allowable range"]
-  |-- absent: ["harmonic contents"], ["limited number"], ["general solution"],
-              ["harmonics"], ["voltage inverter"], ["reasonable time"],
-              ["nonlinear equations"], ["limitations"], ["complex solution"],
-              ["minimum allowable range"]
-  |-- present: ["method"], ["output"], ["design"], ["group"], ["hybrid pwm"],
-               ["order"]
+
+  |-- present: ['harmonic contents'], ['method'], ['output'],
+               ['voltage inuerter'], ['limited number'], ['general solution'],
+               ['design'], ['harmonics'], ['voltage inverter'],
+               ['reasonable time'], ['group'], ['nonlinear equations'],
+               ['hybrid pwm'], ['limitations'], ['complex solution'],
+               ['order'], ['minimum allowable range']
 ```
