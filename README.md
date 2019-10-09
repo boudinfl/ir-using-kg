@@ -86,65 +86,7 @@ to
 by doing:
 
 ```bash
-# create standard TREC data files
-EXP="ntcir-2"
-for FILE in data/docs/*.gz
-do
-    python3 src/ntcir_to_trec.py --input ${FILE} \
-                                 --output data/docs/${EXP}/${FILE##*/}
-done
-
-# create TREC data files with (author) keywords information
-EXP="ntcir-2+keywords"
-for FILE in data/docs/*.gz
-do
-    python3 src/ntcir_to_trec.py --input ${FILE} \
-                                 --output data/docs/${EXP}/${FILE##*/} \
-                                 --include_keywords
-done
-
-# create TREC data files with (automatically) generated keyphrases information
-for TOP in 5
-do
-    EXP="ntcir-2+top${TOP}-all.keyphrases"
-    for FILE in data/docs/*.gz
-    do
-        python3 src/ntcir_to_trec.py --input ${FILE} \
-                                     --output data/docs/${EXP}/${FILE##*/} \
-                                     --path_to_keyphrases data/keyphrases/${FILE##*/}.CopyRNN.all.json.gz \
-                                     --nb_keyphrases ${TOP}
-    done
-    EXP="ntcir-2+top${TOP}-abs.keyphrases"
-    for FILE in data/docs/*.gz
-    do
-        python3 src/ntcir_to_trec.py --input ${FILE} \
-                                     --output data/docs/${EXP}/${FILE##*/} \
-                                     --path_to_keyphrases data/keyphrases/${FILE##*/}.CopyRNN.abs.json.gz \
-                                     --nb_keyphrases ${TOP}
-    done
-    EXP="ntcir-2+top${TOP}-pres.keyphrases"
-    for FILE in data/docs/*.gz
-    do
-        python3 src/ntcir_to_trec.py --input ${FILE} \
-                                     --output data/docs/${EXP}/${FILE##*/} \
-                                     --path_to_keyphrases data/keyphrases/${FILE##*/}.CopyRNN.pres.json.gz \
-                                     --nb_keyphrases ${TOP}
-    done
-done
-
-# create TREC data files with (automatically) generated keyphrases and keyword information
-for TOP in 5
-do
-    EXP="ntcir-2+keywords+top${TOP}-all.keyphrases"
-    for FILE in data/docs/*.gz
-    do
-        python3 src/ntcir_to_trec.py --input ${FILE} \
-                                     --output data/docs/${EXP}/${FILE##*/} \
-                                     --path_to_keyphrases data/keyphrases/${FILE##*/}.CopyRNN.all.json.gz \
-                                     --nb_keyphrases ${TOP} \
-                                     --include_keywords
-    done
-done
+sh src/0_create_data.sh
 ```
 
 ### Creating indexes
@@ -152,18 +94,7 @@ done
 We are now ready for indexing!
 
 ```bash
-# create indexes
-# for EXP in "ntcir-2" "ntcir-2+keywords" "ntcir-2+top5-all.keyphrases" "ntcir-2+top5-abs.keyphrases" "ntcir-2+top5-pres.keyphrases" "ntcir-2+top10-all.keyphrases" "ntcir-2+top10-abs.keyphrases" "ntcir-2+top10-pres.keyphrases"
-for EXP in "ntcir-2+top5-all.keyphrases" "ntcir-2+top5-abs.keyphrases" "ntcir-2+top5-pres.keyphrases" "ntcir-2+keywords+top5-all.keyphrases"
-do
-    sh anserini/target/appassembler/bin/IndexCollection \
-        -collection TrecCollection \
-        -generator JsoupGenerator \
-        -threads 2 \
-        -input data/docs/${EXP}/ \
-        -index data/indexes/lucene-index.${EXP}.pos+docvectors+rawdocs \
-        -storePositions -storeDocvectors -storeRawDocs
-done
+sh src/1_create_indexes.sh
 ```
 
 ## Retrieval
@@ -230,26 +161,7 @@ python3 src/topics_to_trec.py \
 We are now ready to retrieve !
 
 ```bash
-# for EXP in "ntcir-2" "ntcir-2+keywords" "ntcir-2+top5-all.keyphrases" "ntcir-2+top5-abs.keyphrases" "ntcir-2+top5-pres.keyphrases" "ntcir-2+top10-all.keyphrases" "ntcir-2+top10-abs.keyphrases" "ntcir-2+top10-pres.keyphrases"
-for EXP in "ntcir-2+top5-all.keyphrases" "ntcir-2+top5-abs.keyphrases" "ntcir-2+top5-pres.keyphrases" "ntcir-2+keywords+top5-all.keyphrases"
-do
-    for MODEL in "bm25"
-    do
-        # compute model
-        sh anserini/target/appassembler/bin/SearchCollection \
-           -topicreader Trec \
-           -index data/indexes/lucene-index.${EXP}.pos+docvectors+rawdocs \
-           -topics data/topics/topic-e0101-0149.title+desc+narr.trec \
-           -output output/run.${EXP}.${MODEL}.txt -${MODEL}
-        
-        # compute model with pseudo-relevance feedback RM3
-        sh anserini/target/appassembler/bin/SearchCollection \
-           -topicreader Trec \
-           -index data/indexes/lucene-index.${EXP}.pos+docvectors+rawdocs \
-           -topics data/topics/topic-e0101-0149.title+desc+narr.trec \
-           -output output/run.${EXP}.${MODEL}+rm3.txt -${MODEL} -rm3
-    done
-done
+sh src/2_retrieve.sh 
 ```
 
 Note that we did not modify the default topic field used for retrieving 
@@ -266,51 +178,33 @@ documents. It is set to `title` by default according to anserini
 ## Evaluation
 
 ```bash
-# for EXP in "ntcir-2" "ntcir-2+keywords" "ntcir-2+top5-all.keyphrases" "ntcir-2+top5-abs.keyphrases" "ntcir-2+top5-pres.keyphrases" "ntcir-2+top10-all.keyphrases" "ntcir-2+top10-abs.keyphrases" "ntcir-2+top10-pres.keyphrases"
-for EXP in "ntcir-2+top5-all.keyphrases" "ntcir-2+top5-abs.keyphrases" "ntcir-2+top5-pres.keyphrases" "ntcir-2+keywords+top5-all.keyphrases"
-do
-    echo "Experiment: ${EXP}"
-    for MODEL in "bm25"
-    do
-        echo "Eval: ${MODEL}"
-        anserini/eval/trec_eval.9.0.4/trec_eval -m map -m P.30 \
-            data/rels/rel1_ntc2-e2_0101-0149 \
-            output/run.${EXP}.${MODEL}.txt
-        
-        echo "Eval: ${MODEL} + RM3"
-        anserini/eval/trec_eval.9.0.4/trec_eval -m map -m P.30 \
-            data/rels/rel1_ntc2-e2_0101-0149 \
-            output/run.${EXP}.${MODEL}+rm3.txt
-    done
-done
+sh src/3_evaluate.sh
 ```
 
 ## Results
 
 
-| MAP               | BM25   | +RM3   |
-:-------------------|--------|--------|
-| NTCIR-2           | 0.2212 | 0.2374 |
-| +keywords         | 0.2379 | 0.2592 |
-|                   |        |        |
-| +top5-all.keyphrases   | 0.2228 | 0.2453 |
-| +top5-pres.keyphrases  | 0.2233 | 0.2460 |
-| +top5-abs.keyphrases   | 0.2144 | 0.2149 |
-|                        |        |        |
-| +keywords+top5-all.keyphrases | 0.2380  | 0.2612 |
+| MAP                        | BM25   | +RM3   |
+:----------------------------|--------|--------|
+| NTCIR-2                    | 0.2212 | 0.2374 |
+| +keywords                  | 0.2379 | 0.2592 |
+| +copyrnn-top5-all          | 0.2228 | 0.2453 |
+| +copyrnn-top5-pres         | 0.2233 | 0.2460 |
+| +copyrnn-top5-abs          | 0.2144 | 0.2149 |
+| +multipartiterank-top5     | 0.2214 | 0.2322 |
+| +kw+copyrnn-top5-all       | 0.2380 | 0.2612 |
+| +kw+multipartiterank-top5  | 0.2403 | 0.2582 |
 
-
-
-| P30               | BM25   | +RM3   |
-:-------------------|--------|--------|
-| NTCIR-2           | 0.1531 | 0.1714 |
-| +keywords         | 0.1571 | 0.1769 |
-|                   |        |        |
-| +top5-all.keyphrases   | 0.1578 | 0.1701 |
-| +top5-pres.keyphrases  | 0.1571 | 0.1680 |
-| +top5-abs.keyphrases   | 0.1483 | 0.1599 |
-|                        |        |        |
-| +keywords+top5-all.keyphrases | 0.1633 | 0.1776 |
+| P30                        | BM25   | +RM3   |
+:----------------------------|--------|--------|
+| NTCIR-2                    | 0.1531 | 0.1714 |
+| +keywords                  | 0.1571 | 0.1769 |
+| +copyrnn-top5-all          | 0.1578 | 0.1701 |
+| +copyrnn-top5-pres         | 0.1571 | 0.1680 |
+| +copyrnn-top5-abs          | 0.1483 | 0.1599 |
+| +multipartiterank-top5     | 0.1537 | 0.1714 |
+| +kw+copyrnn-top5-all       | 0.1633 | 0.1776 |
+| +kw+multipartiterank-top5  | 0.1605 | 0.1748 |
 
 
 ## Automatic keyphrase generation
