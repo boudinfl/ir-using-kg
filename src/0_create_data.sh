@@ -18,7 +18,7 @@ do
 done
 
 # create TREC data files with (automatically) generated keyphrases information
-for TOP in 5
+for TOP in 5 10
 do
     EXP="ntcir-2+copyrnn-top${TOP}-all"
     for FILE in data/docs/*.gz
@@ -55,7 +55,7 @@ do
 done
 
 # create TREC data files with (automatically) generated keyphrases and keyword information
-for TOP in 5
+for TOP in 5 10
 do
     EXP="ntcir-2+kw+copyrnn-top${TOP}-all"
     for FILE in data/docs/*.gz

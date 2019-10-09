@@ -36,15 +36,15 @@ parser.add_argument('--nb_keyphrases',
 
 args = parser.parse_args()
 
+# Creating output path if it does not exist
+output_dir = os.path.split(args.output)[0]
+if not os.path.isdir(output_dir):
+    os.makedirs(output_dir, exist_ok=True)
+
 # skip if file already exists
 if os.path.isfile(args.output):
     print("file {} already exists - stopping now".format(args.output))
     sys.exit(0)
-
-# Creating output path if it does not exist
-output_dir = os.path.split(args.output)[0]
-if not os.path.isdir(output_dir):
-    os.makedirs(args.output, exist_ok=True)
 
 # loading keyphrases if provided
 if args.path_to_keyphrases:

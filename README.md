@@ -188,23 +188,41 @@ sh src/3_evaluate.sh
 :----------------------------|--------|--------|
 | NTCIR-2                    | 0.2212 | 0.2374 |
 | +keywords                  | 0.2379 | 0.2592 |
+|                            |        |        |
 | +copyrnn-top5-all          | 0.2228 | 0.2453 |
 | +copyrnn-top5-pres         | 0.2233 | 0.2460 |
 | +copyrnn-top5-abs          | 0.2144 | 0.2149 |
+| +copyrnn-top10-all         | 0.2211 | 0.2381 |
+| +copyrnn-top10-pres        | 0.2205 | 0.2343 |
+| +copyrnn-top10-abs         | 0.2113 | 0.2094 |
+|                            |        |        |
 | +multipartiterank-top5     | 0.2214 | 0.2322 |
+| +multipartiterank-top10    | 0.2170 | 0.2273 |
+|                            |        |        |
 | +kw+copyrnn-top5-all       | 0.2380 | 0.2612 |
+| +kw+copyrnn-top10-all      | 0.2341 | 0.2544 |
 | +kw+multipartiterank-top5  | 0.2403 | 0.2582 |
+| +kw+multipartiterank-top10 | 0.2351 | 0.2558 |
 
 | P30                        | BM25   | +RM3   |
 :----------------------------|--------|--------|
 | NTCIR-2                    | 0.1531 | 0.1714 |
 | +keywords                  | 0.1571 | 0.1769 |
+|                            |        |        |
 | +copyrnn-top5-all          | 0.1578 | 0.1701 |
 | +copyrnn-top5-pres         | 0.1571 | 0.1680 |
 | +copyrnn-top5-abs          | 0.1483 | 0.1599 |
+| +copyrnn-top10-all         | 0.1578 | 0.1680 |
+| +copyrnn-top10-pres        | 0.1585 | 0.1673 |
+| +copyrnn-top10-abs         | 0.1469 | 0.1592 |
+|                            |        |        |
 | +multipartiterank-top5     | 0.1537 | 0.1714 |
+| +multipartiterank-top10    | 0.1517 | 0.1673 |
+|                            |        |        |
 | +kw+copyrnn-top5-all       | 0.1633 | 0.1776 |
+| +kw+copyrnn-top10-all      | 0.1633 | 0.1762 |
 | +kw+multipartiterank-top5  | 0.1605 | 0.1748 |
+| +kw+multipartiterank-top10 | 0.1537 | 0.1796 |
 
 
 ## Automatic keyphrase generation
