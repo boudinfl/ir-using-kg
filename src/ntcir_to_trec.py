@@ -17,7 +17,7 @@ parser.add_argument("--input",
                     type=str)
 
 parser.add_argument("--output",
-                    help="output file in TREC format.",
+                    help="output directory in TREC format.",
                     type=str)
 
 parser.add_argument('--include_keywords',
@@ -36,7 +36,7 @@ parser.add_argument('--nb_keyphrases',
 
 args = parser.parse_args()
 
-# Creating output path if it does not exist
+# creating output path if it does not exist
 output_dir = os.path.split(args.output)[0]
 if not os.path.isdir(output_dir):
     os.makedirs(output_dir, exist_ok=True)
@@ -80,7 +80,7 @@ with gzip.open(args.input, 'rt') as f:
             # keywords
             elif args.include_keywords and line.startswith('<KYWE'):
                 keywords = BeautifulSoup(line.strip(), 'html.parser').text
-                #keywords = re.sub('\s+', " ", keywords.replace("//", " "))
+                # keywords = re.sub('\s+', " ", keywords.replace("//", " "))
                 o.write("<HEAD>{}</HEAD>\n".format(keywords.strip()))
 
             elif line.startswith('</REC>'):
