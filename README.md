@@ -89,6 +89,18 @@ by doing:
 sh src/0_create_data.sh
 ```
 
+Some statistics about the generated data:
+
+```
+ntc1-e1: 187,080 documents, 185,061 with keywords
+ntc2-e1g: 77,433 documents, 75,081 with keywords
+ntc2-e1k: 57,545 documents, 57,443 with keywords
+
+all 322,058 documents, 317,585 with keywords (98.6%)
+
+```
+
+
 ### Creating indexes
 
 We are now ready for indexing!
@@ -155,6 +167,19 @@ python3 src/topics_to_trec.py \
         --output data/topics/topic-e0101-0149.title+desc+narr.trec \
         --keep_narrative
 ```
+
+Topics are categorized into fields:
+
+1. Electricity, information and control
+2. Chemistry
+3. Architecture, civil engineering and landscape gardening
+4. Biology and agriculture
+5. Science
+6. Engineering
+7. Medicine and dentistry
+8. Cultural and social science
+
+
 
 ### Retrieving documents
 
