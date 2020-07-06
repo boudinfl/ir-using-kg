@@ -1,4 +1,10 @@
-# IR Evaluation of Keyphrase Generation 
+# Keyphrase Generation for Scientific Document Retrieval
+
+This repository contains the code for reproducing the experiments from the paper:
+
+ - **Keyphrase Generation for Scientific Document Retrieval.**
+   Florian Boudin, Ygor Gallina, Akiko Aizawa.
+   Association for Computational Linguistics (ACL), 2020.
 
 ## Data
 
@@ -249,74 +255,3 @@ sh src/3_evaluate.sh
 | +kw+multipartiterank-top5  | 0.1605 | 0.1748 |
 | +kw+multipartiterank-top10 | 0.1537 | 0.1796 |
 
-
-## Automatic keyphrase generation
-
-Example (no author's keywords provided)
-
-```
-<DOC>
-    <DOCNO>gakkai-e-0000000538</DOCNO>
-    <TITLE>
-        A Hybrid PWM for Controlling the Harmonic Contents in the output of
-        Voltage Inuerter
-    </TITLE>
-    <TEXT>
-        The generalized method of harmonics elimination £1 is one of the few
-        methods that deal with general solution for the harmonics problem.
-        However, because the complex solution of the nonlinear equations in
-        this method only a limited number of harmonics can be eliminated with a
-        reasonable time and design constrains. To overcome these limitations and
-        have a generalized method for harmonics reduction a simplified method to
-        minimize and control the harmonic contents in the output of voltage
-        inverter is introduced. With presented method any group of harmonics
-        can be controlled within the design requirements while the other
-        harmonics up to any order are kept within a minimum allowable range.
-    </TEXT>
-</DOC>
-```
-
-CopyRNN
-
-```
-|-- gakkai-e-0000000538
-
-    |-- present: ['harmonics'], ['voltage inverter'], ['hybrid'],
-                 ['generalized method'], ['pwm'], ['voltage inuerter'],
-                 ['nonlinear equations'], ['voltage'], ['inuerter'], ['£1'],
-                 ['design'], ['control'], ['inverter'], ['method'], ['general'],
-                 ['minimum allowable range'], ['allowable range'], ['group'],
-                 ['nonlinear'], ['elimination']
-                 
-    |-- absent: ['finite element'], ['nonlinear systems'], ['optimization'],
-                ['wavelets'], ['chaos'], ['stability'],
-                ['computational geometry'], ['65n30'], ['preconditioning'],
-                ['fem'], ['convergence'], ['regularization'],
-                ['numerical analysis'], ['simulation'], ['uncertainty'],
-                ['computational fluid dynamics'], ['interpolation'],
-                ['algorithms'], ['cryptography'], ['electromagnetics']]
-
-    |-- all: ['harmonics'], ['voltage inverter'], ['hybrid'],
-             ['generalized method'], ['pwm'], ['voltage inuerter'],
-             ['nonlinear equations'], ['voltage'], ['inuerter'], ['£1'],
-             ['design'], ['control'], ['inverter'], ['method'], ['general'],
-             ['minimum allowable range'], ['finite element'],
-             ['allowable range'], ['group'], ['nonlinear systems']
-```
-
-MultipartiteRank
-
-```
-with gzip.open('ntc1-e1.gz.MultipartiteRank.pres.json.gz', 'rt') as f:
-    key = json.loads(f.read())
-    print(key["gakkai-e-0000000538"])
-
-|-- gakkai-e-0000000538
-
-  |-- present: ['harmonic contents'], ['method'], ['output'],
-               ['voltage inuerter'], ['limited number'], ['general solution'],
-               ['design'], ['harmonics'], ['voltage inverter'],
-               ['reasonable time'], ['group'], ['nonlinear equations'],
-               ['hybrid pwm'], ['limitations'], ['complex solution'],
-               ['order'], ['minimum allowable range']
-```
