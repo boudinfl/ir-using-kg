@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 TOPICFIELD="description"
+mkdir -p output
 for INDEX in data/indexes/lucene-index.*
 do
     EXP=${INDEX##*/lucene-index.}
-    # for MODEL in "bm25" "ql"
-    for MODEL in "bm25"
+    for MODEL in "bm25" "qld"
+    # for MODEL in "bm25"
     do
         if [[ ! -f "output/run.${EXP}.${TOPICFIELD}.${MODEL}.txt" ]]
         then

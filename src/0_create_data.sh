@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # T+A
-EXP="ntcir-2"
+EXP="ntcir-2-t+a"
 for FILE in data/docs/*.gz
 do
     python3 src/ntcir_to_trec.py --input ${FILE} \
@@ -9,7 +9,7 @@ do
 done
 
 # T+A+K
-EXP="ntcir-2+kw"
+EXP="ntcir-2-t+a+k"
 for FILE in data/docs/*.gz
 do
     python3 src/ntcir_to_trec.py --input ${FILE} \
@@ -24,8 +24,8 @@ do
     #for VARIANT in "all" "abs" "pres"
     for VARIANT in "all"
     do
-        # COPYRNN
-        EXP="ntcir-2+copyrnn-top${TOP}-${VARIANT}"
+        # seq2seq + copy
+        EXP="ntcir-2-t+a+s2s-copy-top${TOP}-${VARIANT}"
         for FILE in data/docs/*.gz
         do
             python3 src/ntcir_to_trec.py --input ${FILE} \
@@ -33,8 +33,8 @@ do
                                          --path_to_keyphrases data/keyphrases/${FILE##*/}.CopyRNN.${VARIANT}.json.gz \
                                          --nb_keyphrases ${TOP}
         done
-        # CORRRNN
-        EXP="ntcir-2+corrrnn-top${TOP}-${VARIANT}"
+        # seq2seq + corr
+        EXP="ntcir-2-t+a+s2s-corr-top${TOP}-${VARIANT}"
         for FILE in data/docs/*.gz
         do
             python3 src/ntcir_to_trec.py --input ${FILE} \
@@ -44,7 +44,8 @@ do
         done
     done
 
-    EXP="ntcir-2+multipartiterank-top${TOP}"
+    # multipartiterank
+    EXP="ntcir-2-t+a+mp-rank-top${TOP}"
     for FILE in data/docs/*.gz
     do
         python3 src/ntcir_to_trec.py --input ${FILE} \
@@ -63,7 +64,7 @@ do
     for VARIANT in "all"
     do
         # COPYRNN
-        EXP="ntcir-2+kw+copyrnn-top${TOP}-${VARIANT}"
+        EXP="ntcir-2-t+a+k+s2s-copy-top${TOP}-${VARIANT}"
         for FILE in data/docs/*.gz
         do
             python3 src/ntcir_to_trec.py --input ${FILE} \
@@ -74,7 +75,7 @@ do
         done
 
         # CORRRNN
-        EXP="ntcir-2+kw+corrrnn-top${TOP}-${VARIANT}"
+        EXP="ntcir-2-t+a+k+s2s-corr-top${TOP}-${VARIANT}"
         for FILE in data/docs/*.gz
         do
             python3 src/ntcir_to_trec.py --input ${FILE} \
@@ -86,7 +87,8 @@ do
 
     done
 
-    EXP="ntcir-2+kw+multipartiterank-top${TOP}"
+    # multipartiterank
+    EXP="ntcir-2-t+a+k+mp-rank-top${TOP}"
     for FILE in data/docs/*.gz
     do
         python3 src/ntcir_to_trec.py --input ${FILE} \
