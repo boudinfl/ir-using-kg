@@ -86,7 +86,7 @@ with gzip.open(args.input, 'rt') as f:
             elif line.startswith('</REC>'):
                 if not is_in_document:
                     print("ERROR, document no valid at line {}".format(i))
-                if args.path_to_keyphrases:
+                if args.path_to_keyphrases and doc_id in keyphrases:
                     kps = keyphrases[doc_id]
                     kps = kps[:min(len(kps), args.nb_keyphrases)]
                     kps = [k[0] for k in kps]
