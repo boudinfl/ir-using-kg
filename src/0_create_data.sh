@@ -17,6 +17,20 @@ do
                                  --include_keywords
 done
 
+# T+A + absent K or present K
+for VARIANT in "abs" "pres"
+do
+    EXP="ntcir-2-t+a+k-${VARIANT}"
+    for FILE in data/docs/*.gz
+    do
+
+        python3 src/ntcir_to_trec.py --input ${FILE} \
+                                     --output data/docs/${EXP}/${FILE##*/} \
+                                     --path_to_keyphrases data/keyphrases/${FILE##*/}.gold.${VARIANT}.json.gz \
+                                     --nb_keyphrases 100
+    done
+done
+
 # T+A + Kps
 # for TOP in 1 2 3 4 5 6 7 8 9 10
 for TOP in 5
