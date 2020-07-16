@@ -177,13 +177,18 @@ Let's look at `kaken-e-1179524700`:
 `absent` keyphrases are:
 
 ```
-User Interface / Retrieval Interface / Multimedia Information / Interactive System / Dynamic Querying
+    User Interface / rel. term
+    Retrieval Interface / rel. term
+    Multimedia Information / pres. but OCR error in title
+    Interactive System / general term
+    Dynamic Querying / rel. term
 ```
 
 `present` keyphrases are:
 
 ```
-Information Visualization / Information Retrieval
+    Information Visualization / 
+    Information Retrieval /
 ```
 
 
