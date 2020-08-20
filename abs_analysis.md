@@ -126,6 +126,45 @@ The top 10 retrieved for query 110 with bm25 on t+a:
 110 Q0 gakkai-e-0000223246 8 15.399300 Anserini X
 110 Q0 gakkai-e-0000210337 9 15.136800 Anserini
 110 Q0 gakkai-e-0000277714 10 14.859900 Anserini
+
+map                   	110	0.0896
+P_10                  	110	0.4000
+```
+
+The top 10 retrieved for query 110 with bm25 on t+a+k-pres:
+
+```
+110 Q0 gakkai-e-0000283794 1 17.394501 Anserini
+110 Q0 gakkai-e-0000301384 2 17.234100 Anserini X
+110 Q0 gakkai-e-0001563545 3 17.109100 Anserini X
+110 Q0 gakkai-e-0001643545 4 17.064400 Anserini
+110 Q0 kaken-e-1179524700 5 16.450899 Anserini X
+110 Q0 gakkai-e-0000320027 6 16.077200 Anserini
+110 Q0 gakkai-e-0000261266 7 15.979300 Anserini
+110 Q0 gakkai-e-0000223246 8 15.490200 Anserini X
+110 Q0 gakkai-e-0000277714 9 15.479500 Anserini
+110 Q0 gakkai-e-0000210337 10 15.412300 Anserini
+
+map                   	110	0.0972
+P_10                  	110	0.4000
+```
+
+The top 10 retrieved for query 110 with bm25 on t+a+k-abs:
+
+```
+110 Q0 gakkai-e-0000283794 1 18.412300 Anserini
+110 Q0 gakkai-e-0000301384 2 17.649401 Anserini X
+110 Q0 gakkai-e-0001643545 3 16.970301 Anserini
+110 Q0 gakkai-e-0001563545 4 16.399200 Anserini X
+110 Q0 gakkai-e-0000261266 5 16.379601 Anserini
+110 Q0 kaken-e-1179524700 6 15.970300 Anserini X
+110 Q0 gakkai-e-0000320027 7 15.701600 Anserini
+110 Q0 gakkai-e-0000223246 8 15.661400 Anserini X
+110 Q0 gakkai-e-0000285939 9 15.637500 Anserini
+110 Q0 gakkai-e-0000280233 10 15.395600 Anserini X
+
+map                   	110	0.1127
+P_10                  	110	0.5000
 ```
 
 The top 10 retrieved for query 110 with bm25 on t+a+k:
@@ -141,6 +180,9 @@ The top 10 retrieved for query 110 with bm25 on t+a+k:
 110 Q0 gakkai-e-0000223246 8 15.805100 Anserini X
 110 Q0 gakkai-e-0000285939 9 15.799000 Anserini
 110 Q0 gakkai-e-0000254537 10 15.520000 Anserini
+
+map                   	110	0.1179
+P_10                  	110	0.4000
 ```
 
 Let's look at `kaken-e-1179524700`:
@@ -189,6 +231,41 @@ Let's look at `kaken-e-1179524700`:
 ```
     Information Visualization / 
     Information Retrieval /
+```
+
+Let's look at `gakkai-e-0000280233`:
+
+```
+<DOC>
+<DOCNO>gakkai-e-0000280233</DOCNO>
+<TITLE>Visual Interaction for Exploration in Information Space of Documents</TITLE>
+<TEXT>We propose a new visual interaction technique to handle document corpus. 
+      The document corpus is visualized with a technique called "visual
+      clustering" that layouts documents and, or keywords according to these
+      relevance. By introducing dynamic and continuous manipulation of
+      visualized data into the visual clustering, our technique enables a user
+      to explore the information space according to his/her own point of view.
+      In this paper, we describe our layout algorithm and visual operations
+      provided for users. An example of visual interaction is demonstrated on
+      our experimental system.</TEXT>
+</DOC>
+```
+
+`absent` keyphrases are:
+
+```
+"Information Visualization"
+"Information Retrieval"
+"Browsing"
+"Interactive Systems"
+"User Interfaces"
+"Graph Layout"
+```
+
+`present` keyphrases are:
+
+```
+
 ```
 
 
