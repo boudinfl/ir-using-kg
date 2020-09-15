@@ -298,5 +298,94 @@ request.
 | T+A+K-abs                  | 0.3228 | 0.3882 |
 | T+A+K                      | 0.3172 | 0.3465 |
 
+### Absent keyphrases fine-grained analysis
+
+```bash
+# python3 src/analyse_abs.py data/docs/ntcir-2-t+a+k/ntc2-e1k.gz
+present: 0.6324005199403194
+absent: 0.3675994800596655
+|-> case 1 (all words): 0.128646918207218
+|-> case 2 (some words): 0.15413770290430115
+|-> case 3 (no words): 0.08481485894812896
+nb_documents_with_kps: 57443
+sum_ratio_present_kps: 36326.98306693177
+sum_ratio_absent_kps: 21116.016933067363
+sum_ratio_absent_kps_case_1: 7389.864922577222
+sum_ratio_absent_kps_case_2: 8854.13206793177
+sum_ratio_absent_kps_case_3: 4872.019942557372
+
+# python3 src/analyse_abs.py data/docs/ntcir-2-t+a+k/ntc2-e1g.gz
+present: 0.6390988530847473
+absent: 0.36090114691527664
+|-> case 1 (all words): 0.09130742069367455
+|-> case 2 (some words): 0.1609295909431814
+|-> case 3 (no words): 0.10866413527837987
+nb_documents_with_kps: 75081
+sum_ratio_present_kps: 47984.18098845591
+sum_ratio_absent_kps: 27096.819011545886
+sum_ratio_absent_kps_case_1: 6855.452453101779
+sum_ratio_absent_kps_case_2: 12082.754617605004
+sum_ratio_absent_kps_case_3: 8158.611940836039
+
+# python3 src/analyse_abs.py data/docs/ntcir-2-t+a+k/ntc1-e1.gz
+present: 0.6290909780987732
+absent: 0.37090902190138064
+|-> case 1 (all words): 0.09813755384356208
+|-> case 2 (some words): 0.16533998469984915
+|-> case 3 (no words): 0.10743148335809942
+nb_documents_with_kps: 185060
+sum_ratio_present_kps: 116419.57640695898
+sum_ratio_absent_kps: 68640.4235930695
+sum_ratio_absent_kps_case_1: 18161.3357142896
+sum_ratio_absent_kps_case_2: 30597.81756855408
+sum_ratio_absent_kps_case_3: 19881.270310249878
+
+# stats for ALL
+present:  63.2  200729 / 317584 
+absent: 36.8 116852 / 317584
+sum_ratio_absent_kps_case_1: 10.2 (all words)
+sum_ratio_absent_kps_case_2: 16.3 (some words)
+sum_ratio_absent_kps_case_3: 10.3 (no words)
+
+# python3 src/analyse_abs.py data/docs/ntcir-2-t+a+s2s-copy-top5-all/ntc2-e1k.gz
+present: 0.9945781562255838
+absent: 0.005421843774437244
+|-> case 1 (all words): 0.0036701711703883383
+|-> case 2 (some words): 0.001167781736032677
+|-> case 3 (no words): 0.000583890868016334
+nb_documents_with_kps: 57545
+sum_ratio_present_kps: 57233.000000001215
+sum_ratio_absent_kps: 311.99999999999125
+sum_ratio_absent_kps_case_1: 211.19999999999692
+sum_ratio_absent_kps_case_2: 67.2000000000004
+sum_ratio_absent_kps_case_3: 33.599999999999945
+
+# python3 src/analyse_abs.py data/docs/ntcir-2-t+a+s2s-copy-top5-all/ntc1-e1.gz
+present: 0.9831739532496944
+absent: 0.016826046750300576
+|-> case 1 (all words): 0.005014993665777932
+|-> case 2 (some words): 0.007362664970414383
+|-> case 3 (no words): 0.004448388114112468
+nb_documents_with_kps: 187079
+sum_ratio_present_kps: 183931.19999999958
+sum_ratio_absent_kps: 3147.7999999994813
+sum_ratio_absent_kps_case_1: 938.2000000000697
+sum_ratio_absent_kps_case_2: 1377.4000000001524
+sum_ratio_absent_kps_case_3: 832.2000000000463
+
+# python3 src/analyse_abs.py data/docs/ntcir-2-t+a+s2s-copy-top5-all/ntc2-e1g.gz
+present: 0.9924192527734113
+absent: 0.007580747226634585
+|-> case 1 (all words): 0.004150685108416191
+|-> case 2 (some words): 0.0024537341960145917
+|-> case 3 (no words): 0.0009763279222037176
+nb_documents_with_kps: 77433
+sum_ratio_present_kps: 76846.00000000355
+sum_ratio_absent_kps: 586.9999999999958
+sum_ratio_absent_kps_case_1: 321.39999999999094
+sum_ratio_absent_kps_case_2: 189.99999999999787
+sum_ratio_absent_kps_case_3: 75.60000000000046
+```
+
 
 
