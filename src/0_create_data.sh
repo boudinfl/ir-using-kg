@@ -18,7 +18,7 @@ do
 done
 
 # T+A + absent K or present K
-for VARIANT in "abs" "pres"
+for VARIANT in "abs" "pres" "abs_c1" "abs_c2" "abs_c3"
 do
     EXP="ntcir-2-t+a+k-${VARIANT}"
     for FILE in data/docs/*.gz

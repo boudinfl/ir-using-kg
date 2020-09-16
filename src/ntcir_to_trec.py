@@ -87,6 +87,7 @@ with gzip.open(args.input, 'rt') as f:
                 if not is_in_document:
                     print("ERROR, document no valid at line {}".format(i))
                 if args.path_to_keyphrases and doc_id in keyphrases:
+                    #print(keyphrases[doc_id])
                     kps = keyphrases[doc_id]
                     kps = kps[:min(len(kps), args.nb_keyphrases)]
                     kps = [k[0] for k in kps]

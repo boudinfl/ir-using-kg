@@ -10,8 +10,11 @@ abstract only (T+A), and title, abstract and author keywords (T+A+K).
 | MAP                        | BM25   | +RM3   | QL     | +RM3   |
 :----------------------------|--------|--------|--------|--------|
 | T+A                        | 0.2916 | 0.3193 | 0.2898 | 0.3147 |
-| T+A+K-pres                 | 0.2999 | 0.3276 | 0.3004 | 0.3163 |
-| T+A+K-abs                  | 0.3012 | 0.3425 | 0.2955 | 0.3102 |
+| T+A+K-pres                 | 0.2999 | 0.3274 | 0.3005 | 0.3167 |
+| T+A+K-abs                  | 0.3008 | 0.3432 | 0.2953 | 0.3098 |
+| T+A+K-abs_c1               | 0.2925 | 0.3305 | 0.2891 | 0.3140 |
+| T+A+K-abs_c2               | 0.2998 | 0.3315 | 0.2977 | 0.3169 |
+| T+A+K-abs_c3               | 0.2911 | 0.3237 | 0.2921 | 0.3226 |
 | T+A+K                      | 0.3138 | 0.3517 | 0.3063 | 0.3300 |
 
 ## Analysis of query qrels
@@ -346,45 +349,6 @@ absent: 36.8 116852 / 317584
 sum_ratio_absent_kps_case_1: 10.2 (all words)
 sum_ratio_absent_kps_case_2: 16.3 (some words)
 sum_ratio_absent_kps_case_3: 10.3 (no words)
-
-# python3 src/analyse_abs.py data/docs/ntcir-2-t+a+s2s-copy-top5-all/ntc2-e1k.gz
-present: 0.9945781562255838
-absent: 0.005421843774437244
-|-> case 1 (all words): 0.0036701711703883383
-|-> case 2 (some words): 0.001167781736032677
-|-> case 3 (no words): 0.000583890868016334
-nb_documents_with_kps: 57545
-sum_ratio_present_kps: 57233.000000001215
-sum_ratio_absent_kps: 311.99999999999125
-sum_ratio_absent_kps_case_1: 211.19999999999692
-sum_ratio_absent_kps_case_2: 67.2000000000004
-sum_ratio_absent_kps_case_3: 33.599999999999945
-
-# python3 src/analyse_abs.py data/docs/ntcir-2-t+a+s2s-copy-top5-all/ntc1-e1.gz
-present: 0.9831739532496944
-absent: 0.016826046750300576
-|-> case 1 (all words): 0.005014993665777932
-|-> case 2 (some words): 0.007362664970414383
-|-> case 3 (no words): 0.004448388114112468
-nb_documents_with_kps: 187079
-sum_ratio_present_kps: 183931.19999999958
-sum_ratio_absent_kps: 3147.7999999994813
-sum_ratio_absent_kps_case_1: 938.2000000000697
-sum_ratio_absent_kps_case_2: 1377.4000000001524
-sum_ratio_absent_kps_case_3: 832.2000000000463
-
-# python3 src/analyse_abs.py data/docs/ntcir-2-t+a+s2s-copy-top5-all/ntc2-e1g.gz
-present: 0.9924192527734113
-absent: 0.007580747226634585
-|-> case 1 (all words): 0.004150685108416191
-|-> case 2 (some words): 0.0024537341960145917
-|-> case 3 (no words): 0.0009763279222037176
-nb_documents_with_kps: 77433
-sum_ratio_present_kps: 76846.00000000355
-sum_ratio_absent_kps: 586.9999999999958
-sum_ratio_absent_kps_case_1: 321.39999999999094
-sum_ratio_absent_kps_case_2: 189.99999999999787
-sum_ratio_absent_kps_case_3: 75.60000000000046
 ```
 
 
