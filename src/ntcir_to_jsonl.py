@@ -8,6 +8,13 @@ import json
 import argparse
 from bs4 import BeautifulSoup
 
+
+def punctuation_mark_cleanser(s):
+    """Add spacing in muddled sentences."""
+    s = re.sub(r'([A-Za-z])([\.\?\!\(\)])([A-Za-z\(\)])', r'\g<1>\g<2> \g<3>', s)
+    return s
+
+
 # get the command line arguments
 parser = argparse.ArgumentParser()
 
@@ -42,12 +49,14 @@ with open(args.input, 'r') as f:
             # abstract
             elif line.startswith('<ABSE'):
                 abstract = BeautifulSoup(line.strip(), 'html.parser').text
+                abstract = punctuation_mark_cleanser(abstract)
                 document["abstract"] = abstract
 
             # keywords
             elif line.startswith('<KYWE'):
                 keywords = BeautifulSoup(line.strip(), 'html.parser').text
-                keywords = ';'.join([k.strip() for k in keywords.split("//")])
+                keywords = re.split(" / |//|;|,", keywords)
+                keywords = ';'.join([k.strip() for k in keywords])
                 document["keyword"] = keywords
 
             elif line.startswith('</REC>'):

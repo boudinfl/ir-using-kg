@@ -2,12 +2,20 @@
 
 """Convert NTCIR formatted files to TREC format."""
 
+import re
 import os
 import sys
 import json
 import gzip
 import argparse
 from bs4 import BeautifulSoup
+
+
+def punctuation_mark_cleanser(s):
+    """Add spacing in muddled sentences."""
+    s = re.sub(r'([A-Za-z])([\.\?\!\(\)])([A-Za-z\(\)])', r'\g<1>\g<2> \g<3>', s)
+    return s
+
 
 # get the command line arguments
 parser = argparse.ArgumentParser()
@@ -75,6 +83,7 @@ with gzip.open(args.input, 'rt') as f:
             # abstract
             elif line.startswith('<ABSE'):
                 abstract = BeautifulSoup(line.strip(), 'html.parser').text
+                abstract = punctuation_mark_cleanser(abstract)
                 o.write("<TEXT>{}</TEXT>\n".format(abstract.strip()))
 
             # keywords

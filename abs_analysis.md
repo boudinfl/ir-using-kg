@@ -6,16 +6,18 @@ Results for retrieval models using keyphrase generation are reported in the
 table below.  Two initial indexing configurations are examined: title and 
 abstract only (T+A), and title, abstract and author keywords (T+A+K).
 
-
 | MAP                        | BM25   | +RM3   | QL     | +RM3   |
 :----------------------------|--------|--------|--------|--------|
-| T+A                        | 0.2916 | 0.3193 | 0.2898 | 0.3147 |
-| T+A+K-pres                 | 0.2999 | 0.3274 | 0.3005 | 0.3167 |
-| T+A+K-abs                  | 0.3008 | 0.3432 | 0.2953 | 0.3098 |
-| T+A+K-abs_c1               | 0.2925 | 0.3305 | 0.2891 | 0.3140 |
-| T+A+K-abs_c2               | 0.2998 | 0.3315 | 0.2977 | 0.3169 |
-| T+A+K-abs_c3               | 0.2911 | 0.3237 | 0.2921 | 0.3226 |
-| T+A+K                      | 0.3138 | 0.3517 | 0.3063 | 0.3300 |
+| T+A                        | 0.2964 | 0.3278 | 0.2948 | 0.3276 |
+| T+A+K-pres                 | 0.3074 | 0.3339 | 0.3066 | 0.3283 |
+| T+A+K-abs                  | 0.3073 | 0.3476 | 0.3018 | 0.3253 |
+| T+A+K-abs_c1               | 0.2990 | 0.3336 | 0.2947 | 0.3242 |
+| T+A+K-abs_c2               | 0.3067 | 0.3358 | 0.3021 | 0.3266 |
+| T+A+K-abs_c3               | 0.2961 | 0.3391 | 0.2972 | 0.3294 |
+| T+A+K-pres+abs_c1          | 0.3091 | 0.3330 | 0.3063 | 0.3286 |
+| T+A+K-abs_c2+abs_c3        | 0.3061 | 0.3404 | 0.3038 | 0.3226 |
+| T+A+K                      | 0.3192 | 0.3546 | 0.3119 | 0.3426 |
+
 
 ## Analysis of query qrels
 
@@ -305,50 +307,52 @@ request.
 
 ```bash
 # python3 src/analyse_abs.py data/docs/ntcir-2-t+a+k/ntc2-e1k.gz
-present: 0.6324005199403194
-absent: 0.3675994800596655
-|-> case 1 (all words): 0.128646918207218
-|-> case 2 (some words): 0.15413770290430115
-|-> case 3 (no words): 0.08481485894812896
+present: 0.5944002707510827
+absent: 0.4055997292489044
+|-> case 1 (all words): 0.1573996084176938
+|-> case 2 (some words): 0.14895836440828625
+|-> case 3 (no words): 0.09924175642290176
 nb_documents_with_kps: 57443
-sum_ratio_present_kps: 36326.98306693177
-sum_ratio_absent_kps: 21116.016933067363
-sum_ratio_absent_kps_case_1: 7389.864922577222
-sum_ratio_absent_kps_case_2: 8854.13206793177
-sum_ratio_absent_kps_case_3: 4872.019942557372
+sum_ratio_present_kps: 34144.13475275444
+sum_ratio_absent_kps: 23298.865247244816
+sum_ratio_absent_kps_case_1: 9041.505706337584
+sum_ratio_absent_kps_case_2: 8556.615326705187
+sum_ratio_absent_kps_case_3: 5700.744214200746
 
 # python3 src/analyse_abs.py data/docs/ntcir-2-t+a+k/ntc2-e1g.gz
-present: 0.6390988530847473
-absent: 0.36090114691527664
-|-> case 1 (all words): 0.09130742069367455
-|-> case 2 (some words): 0.1609295909431814
-|-> case 3 (no words): 0.10866413527837987
+present: 0.6057154218609786
+absent: 0.3942845781390346
+|-> case 1 (all words): 0.118048711335953
+|-> case 2 (some words): 0.15329477497636262
+|-> case 3 (no words): 0.12294109182668907
 nb_documents_with_kps: 75081
-sum_ratio_present_kps: 47984.18098845591
-sum_ratio_absent_kps: 27096.819011545886
-sum_ratio_absent_kps_case_1: 6855.452453101779
-sum_ratio_absent_kps_case_2: 12082.754617605004
-sum_ratio_absent_kps_case_3: 8158.611940836039
+sum_ratio_present_kps: 45477.719588744134
+sum_ratio_absent_kps: 29603.28041125686
+sum_ratio_absent_kps_case_1: 8863.215295814687
+sum_ratio_absent_kps_case_2: 11509.525000000282
+sum_ratio_absent_kps_case_3: 9230.540115439642
+
 
 # python3 src/analyse_abs.py data/docs/ntcir-2-t+a+k/ntc1-e1.gz
-present: 0.6290909780987732
-absent: 0.37090902190138064
-|-> case 1 (all words): 0.09813755384356208
-|-> case 2 (some words): 0.16533998469984915
-|-> case 3 (no words): 0.10743148335809942
+present: 0.5957497800182515
+absent: 0.4042502199818326
+|-> case 1 (all words): 0.12470327040484408
+|-> case 2 (some words): 0.15765514214887882
+|-> case 3 (no words): 0.12189180742829193
 nb_documents_with_kps: 185060
-sum_ratio_present_kps: 116419.57640695898
-sum_ratio_absent_kps: 68640.4235930695
-sum_ratio_absent_kps_case_1: 18161.3357142896
-sum_ratio_absent_kps_case_2: 30597.81756855408
-sum_ratio_absent_kps_case_3: 19881.270310249878
+sum_ratio_present_kps: 110249.45429017763
+sum_ratio_absent_kps: 74810.54570983794
+sum_ratio_absent_kps_case_1: 23077.587221120444
+sum_ratio_absent_kps_case_2: 29175.660606071517
+sum_ratio_absent_kps_case_3: 22557.297882679704
+
 
 # stats for ALL
-present:  63.2  200729 / 317584 
-absent: 36.8 116852 / 317584
-sum_ratio_absent_kps_case_1: 10.2 (all words)
-sum_ratio_absent_kps_case_2: 16.3 (some words)
-sum_ratio_absent_kps_case_3: 10.3 (no words)
+present: 61.9 (35486.2458943819+47372.70321067797+113871.40696251072) / (57443+75081+185060)
+absent: 38.1 (21956.75410561717+27708.296789323544+71188.59303751204) / (57443+75081+185060)
+sum_ratio_absent_kps_case_1: 11.4 (all words) (8190.58108835583+7460.046897546126+20469.305158735962) / (57443+75081+185060)
+sum_ratio_absent_kps_case_2: 16.3 (some words) (8874.901054500759+12078.071284271668+30800.43423522082) / (57443+75081+185060)
+sum_ratio_absent_kps_case_3: 10.4 (no words) (4891.2719627594+8170.178607502703+19918.853643583272) / (57443+75081+185060)
 ```
 
 
