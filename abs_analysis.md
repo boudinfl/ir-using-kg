@@ -306,54 +306,57 @@ request.
 ### Absent keyphrases fine-grained analysis
 
 ```bash
-# python3 src/analyse_abs.py data/docs/ntcir-2-t+a+k/ntc2-e1k.gz
-present: 0.5944002707510827
-absent: 0.4055997292489044
-|-> case 1 (all words): 0.1573996084176938
-|-> case 2 (some words): 0.14895836440828625
-|-> case 3 (no words): 0.09924175642290176
+# python3 src/analyse_abs.py data/docs/ntcir-2-t+a+k-all/ntc2-e1k.gz
+present: 0.5944215478818422
+absent: 0.4055784521181448
+|-> case 1 (all words): 0.10940149390142972
+|-> case 2 (some words): 0.1712839626609126
+|-> case 3 (no words): 0.12489299555577921
+|-> exp. : 0.2051590485657585
 nb_documents_with_kps: 57443
-sum_ratio_present_kps: 34144.13475275444
-sum_ratio_absent_kps: 23298.865247244816
-sum_ratio_absent_kps_case_1: 9041.505706337584
-sum_ratio_absent_kps_case_2: 8556.615326705187
-sum_ratio_absent_kps_case_3: 5700.744214200746
+sum_ratio_present_kps: 34145.35697497666
+sum_ratio_absent_kps: 23297.643025022593
+sum_ratio_absent_kps_case_1: 6284.350014179828
+sum_ratio_absent_kps_case_2: 9839.064667130802
+sum_ratio_absent_kps_case_3: 7174.228343710625
+exp_ratio_case_2_and_3: 11784.951226762865
 
-# python3 src/analyse_abs.py data/docs/ntcir-2-t+a+k/ntc2-e1g.gz
-present: 0.6057154218609786
-absent: 0.3942845781390346
-|-> case 1 (all words): 0.118048711335953
-|-> case 2 (some words): 0.15329477497636262
-|-> case 3 (no words): 0.12294109182668907
+# python3 src/analyse_abs.py data/docs/ntcir-2-t+a+k-all/ntc2-e1g.gz
+present: 0.6057198615106014
+absent: 0.3942801384894118
+|-> case 1 (all words): 0.07577235777279116
+|-> case 2 (some words): 0.17185073982533666
+|-> case 3 (no words): 0.1466570408912709
+|-> exp. : 0.22788086128685572
 nb_documents_with_kps: 75081
-sum_ratio_present_kps: 45477.719588744134
-sum_ratio_absent_kps: 29603.28041125686
-sum_ratio_absent_kps_case_1: 8863.215295814687
-sum_ratio_absent_kps_case_2: 11509.525000000282
-sum_ratio_absent_kps_case_3: 9230.540115439642
+sum_ratio_present_kps: 45478.05292207746
+sum_ratio_absent_kps: 29602.947077923527
+sum_ratio_absent_kps_case_1: 5689.064393938933
+sum_ratio_absent_kps_case_2: 12902.725396826101
+sum_ratio_absent_kps_case_3: 11011.157287157512
+exp_ratio_case_2_and_3: 17109.522946278415
 
-
-# python3 src/analyse_abs.py data/docs/ntcir-2-t+a+k/ntc1-e1.gz
-present: 0.5957497800182515
-absent: 0.4042502199818326
-|-> case 1 (all words): 0.12470327040484408
-|-> case 2 (some words): 0.15765514214887882
-|-> case 3 (no words): 0.12189180742829193
+# python3 src/analyse_abs.py data/docs/ntcir-2-t+a+k-all/ntc1-e1.gz
+present: 0.5957532537950961
+absent: 0.40424674620498796
+|-> case 1 (all words): 0.08064604744236697
+|-> case 2 (some words): 0.17705899830149863
+|-> case 3 (no words): 0.14654170046128967
+|-> exp. : 0.23154720959601305
 nb_documents_with_kps: 185060
-sum_ratio_present_kps: 110249.45429017763
-sum_ratio_absent_kps: 74810.54570983794
-sum_ratio_absent_kps_case_1: 23077.587221120444
-sum_ratio_absent_kps_case_2: 29175.660606071517
-sum_ratio_absent_kps_case_3: 22557.297882679704
-
+sum_ratio_present_kps: 110250.09714732048
+sum_ratio_absent_kps: 74809.90285269507
+sum_ratio_absent_kps_case_1: 14924.357539684434
+sum_ratio_absent_kps_case_2: 32766.538225675336
+sum_ratio_absent_kps_case_3: 27119.007087366266
+exp_ratio_case_2_and_3: 42850.126607838174
 
 # stats for ALL
-present: 61.9 (35486.2458943819+47372.70321067797+113871.40696251072) / (57443+75081+185060)
-absent: 38.1 (21956.75410561717+27708.296789323544+71188.59303751204) / (57443+75081+185060)
-sum_ratio_absent_kps_case_1: 11.4 (all words) (8190.58108835583+7460.046897546126+20469.305158735962) / (57443+75081+185060)
-sum_ratio_absent_kps_case_2: 16.3 (some words) (8874.901054500759+12078.071284271668+30800.43423522082) / (57443+75081+185060)
-sum_ratio_absent_kps_case_3: 10.4 (no words) (4891.2719627594+8170.178607502703+19918.853643583272) / (57443+75081+185060)
+present: 59.8 (34145.35697497666+45478.05292207746+110250.09714732048) / (57443+75081+185060)
+absent: 40.2 (23297.643025022593+29602.947077923527+74809.90285269507) / (57443+75081+185060)
+sum_ratio_absent_kps_case_1: 8.5 (all words) (6284.350014179828+5689.064393938933+14924.357539684434) / (57443+75081+185060)
+sum_ratio_absent_kps_case_2: 17.5 (some words) (9839.064667130802+12902.725396826101+32766.538225675336) / (57443+75081+185060)
+sum_ratio_absent_kps_case_3: 14.2 (no words) (7174.228343710625+11011.157287157512+27119.007087366266) / (57443+75081+185060)
+exp_ratio_case_2_and_3: 22.6 (11784.951226762865+17109.522946278415+42850.126607838174) / (57443+75081+185060)
+
 ```
-
-
-
