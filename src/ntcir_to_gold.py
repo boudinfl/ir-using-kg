@@ -120,7 +120,7 @@ with gzip.open(args.input, 'rt') as f:
                     nb_present_words = 0
                     words = kp.split()
                     for word in words:
-                        if word in pp_ti or word in pp_ab:
+                        if word in pp_ti.split() or word in pp_ab.split():
                             nb_present_words += 1
 
                     # Case 1: every word but not the sequence
@@ -169,3 +169,4 @@ with gzip.open(args.input, 'rt') as f:
 
     with gzip.open(args.output + '.abs_c2+abs_c3.json.gz', 'wt') as o:
         o.write(json.dumps(absent_case_2_and_3_kps, indent=4, sort_keys=True))
+
