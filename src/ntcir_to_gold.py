@@ -9,6 +9,7 @@ import argparse
 from bs4 import BeautifulSoup
 from nltk.stem import PorterStemmer
 from nltk.tokenize import TreebankWordTokenizer
+from nltk.tokenize import word_tokenize
 from collections import defaultdict
 
 
@@ -20,7 +21,7 @@ def punctuation_mark_cleanser(s):
 
 def tokenize(s):
     """Tokenize an input text."""
-    return TreebankWordTokenizer().tokenize(s)
+    return word_tokenize(s)
 
 
 def lowercase_and_stem(_words):

@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 
 from nltk.stem import PorterStemmer
 from nltk.tokenize import TreebankWordTokenizer
+from nltk.tokenize import word_tokenize
 
 #import spacy
 #nlp = spacy.load("en_core_web_sm", disable=["tagger", "parser", "ner"])
@@ -21,7 +22,8 @@ def pptext(s):
     """lowercase, tokenize and stem text."""
     #doc = nlp(s)
     #words = [word.text for word in doc]
-    tokens = TreebankWordTokenizer().tokenize(s)
+    #tokens = TreebankWordTokenizer().tokenize(s)
+    tokens = word_tokenize(s)
     return " ".join([PorterStemmer().stem(w.lower()) for w in tokens])
 
 
